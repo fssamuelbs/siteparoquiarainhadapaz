@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Santo do Dia — Paróquia Rainha da Paz</title>
+  <meta name="description" content="Santo do Dia automático com imagem e descrição. Paróquia Rainha da Paz — Parauapebas/PA." />
+
+  <style>
+    :root{
+      --bg:#ffffff; --text:#1f2937; --muted:#6b7280; --line:#e5e7eb;
+      --brand-900:#0b2a57; --brand-800:#0f3a79; --brand-700:#1452a6;
+      --accent:#d11b2c; --card:#ffffff; --soft:#f7f8fb;
+      --shadow:0 10px 30px rgba(0,0,0,.08); --radius:18px; --max:1120px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Arial;color:var(--text);background:var(--bg)}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(var(--max),92vw);margin:0 auto}
+    .grid{display:grid;gap:16px}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.25);
+      color:#fff;background:rgba(255,255,255,.12);transition:.2s;font-weight:800;cursor:pointer;
+    }
+    .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.18)}
+    .btn-solid{background:var(--accent);border-color:var(--accent)}
+    .btn-solid:hover{filter:brightness(.98)}
+
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;border-radius:999px;border:1px solid var(--line);
+      color:var(--muted);font-weight:800;font-size:12px;background:#fff;
+    }
+
+    .topbar{background:var(--brand-900);color:#fff;font-size:13px}
+    .topbar .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 0;gap:14px;opacity:.98}
+    .topbar .right{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:flex-end}
+    .topbar a{opacity:.95}
+    .topbar a:hover{opacity:1;text-decoration:underline}
+
+    header{
+      background:linear-gradient(90deg,var(--brand-800),var(--brand-700));
+      color:#fff;position:sticky;top:0;z-index:50;box-shadow:0 6px 22px rgba(0,0,0,.12);
+    }
+    .header-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:18px}
+    .brand{display:flex;align-items:center;gap:14px;min-width:240px}
+    .logo{
+      width:54px;height:54px;border-radius:16px;background:rgba(255,255,255,.18);
+      display:grid;place-items:center;border:1px solid rgba(255,255,255,.25)
+    }
+    .brand h1{margin:0;font-size:18px;line-height:1.1;letter-spacing:.2px}
+    .brand p{margin:2px 0 0;font-size:12px;opacity:.9}
+
+    .search{flex:1;display:flex;justify-content:flex-end;gap:10px;align-items:center;min-width:240px}
+    .search form{
+      width:min(420px,100%);display:flex;gap:10px;align-items:center;
+      background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
+      padding:8px 10px;border-radius:999px;
+    }
+    .search input{width:100%;border:0;outline:0;background:transparent;color:#fff;font-weight:800}
+    .search input::placeholder{color:rgba(255,255,255,.8);font-weight:800}
+    .search button{border:0;background:transparent;color:#fff;font-weight:1000;cursor:pointer;opacity:.9}
+    .search button:hover{opacity:1}
+
+    nav{background:#fff;border-bottom:1px solid var(--line)}
+    .nav-inner{display:flex;gap:18px;align-items:center;padding:10px 0;overflow:auto}
+    .nav-inner a{
+      font-weight:1000;font-size:13px;color:#23324a;white-space:nowrap;
+      padding:10px 12px;border-radius:999px;transition:.18s
+    }
+    .nav-inner a:hover{background:var(--soft)}
+    .nav-inner a.active{
+      background:rgba(209,27,44,.08);color:var(--accent);border:1px solid rgba(209,27,44,.22)
+    }
+
+    .hero{padding:26px 0 18px}
+    .hero-banner{
+      border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);
+      background:
+        radial-gradient(1200px 300px at 10% 20%, rgba(20,82,166,.22), transparent 60%),
+        radial-gradient(900px 260px at 90% 80%, rgba(209,27,44,.18), transparent 60%),
+        linear-gradient(90deg,#0f3a79,#1452a6);
+      color:#fff;
+    }
+    .hero-content{padding:22px;display:flex;gap:18px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}
+    .hero h2{margin:0;font-size:22px;letter-spacing:.2px}
+    .hero p{margin:8px 0 0;opacity:.95;max-width:820px}
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+    main{padding:16px 0 40px}
+    .layout{display:grid;grid-template-columns:1.6fr .9fr;gap:24px;align-items:start}
+    .section-title{display:flex;align-items:center;gap:10px;margin:14px 0 14px;font-weight:1000;letter-spacing:.2px}
+    .section-title::before{content:"";width:4px;height:18px;background:var(--accent);border-radius:999px;display:inline-block}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 8px 22px rgba(0,0,0,.06);overflow:hidden}
+    .pad{padding:16px}
+    .muted{color:var(--muted)}
+    .mono{white-space:pre-wrap;line-height:1.75;margin:10px 0 0}
+
+    .widget-list{display:flex;flex-direction:column;gap:10px}
+    .widget-link{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:12px 14px;border-radius:16px;border:1px solid var(--line);
+      background:#fff;font-weight:1000;
+    }
+    .widget-link span{color:var(--muted);font-weight:900;font-size:12px}
+    .widget-link:hover{background:var(--soft)}
+
+    .saint-card{
+      display:grid;
+      grid-template-columns: 180px 1fr;
+      gap:14px;
+      align-items:start;
+    }
+    .saint-img{
+      width:100%;
+      aspect-ratio: 4 / 5;
+      border-radius:16px;
+      border:1px solid var(--line);
+      overflow:hidden;
+      background:linear-gradient(180deg, #f3f4f6, #ffffff);
+      box-shadow:0 8px 22px rgba(0,0,0,.06);
+      display:grid;
+      place-items:center;
+      color:var(--muted);
+      font-weight:900;
+      font-size:12px;
+    }
+    .saint-img img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .saint-desc{ line-height:1.75; font-weight:700; }
+    .chips{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .chip{
+      padding:8px 10px; border-radius:999px; border:1px solid var(--line);
+      background:#fff; font-weight:900; font-size:12px; cursor:pointer;
+    }
+    .chip:hover{ background:var(--soft); }
+
+    footer{margin-top:34px;border-top:1px solid var(--line);background:#0b1f3f;color:#fff;padding:26px 0}
+    .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:18px;align-items:start}
+    footer h4{margin:0 0 10px}
+    footer p{margin:0;opacity:.9}
+    footer a{opacity:.92}
+    footer a:hover{opacity:1;text-decoration:underline}
+    .footnote{
+      margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.14);
+      display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;opacity:.9;font-size:13px
+    }
+
+    @media (max-width:980px){
+      .layout{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr}
+      .saint-card{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container">
+      <div class="inner">
+        <div id="todayText">Parauapebas, -- de -- de ----</div>
+        <div class="right">
+          <a href="index.html#contato">Secretaria</a>
+          <span style="opacity:.6">•</span>
+          <a href="index.html#doacoes">Doações & Dízimo</a>
+          <span style="opacity:.6">•</span>
+          <a href="index.html#avisos">Avisos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <div class="brand">
+          <div class="logo" aria-label="Logo"><span style="font-weight:1000;font-size:18px;">✝</span></div>
+          <div>
+            <h1>Paróquia Rainha da Paz</h1>
+            <p>Parauapebas — PA • Pastoral da Comunicação</p>
+          </div>
+        </div>
+
+        <div class="search">
+          <form onsubmit="return fakeSearch(event)">
+            <input type="search" placeholder="O que procura?" aria-label="Buscar no site" />
+            <button title="Buscar" aria-label="Buscar">🔎</button>
+          </form>
+          <a class="btn btn-solid" href="index.html#doacoes">Dízimo / Doar</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html#inicio">INÍCIO</a>
+        <a href="index.html#paroquo">NOSSO PÁROCO</a>
+        <a href="index.html#pastorais">PASTORAIS</a>
+        <a href="index.html#comunidades">COMUNIDADES</a>
+        <a href="index.html#avisos">AVISOS</a>
+        <a href="index.html#galerias">GALERIAS</a>
+        <a class="active" href="santo-do-dia.html">SANTO DO DIA</a>
+        <a href="aprenda-terco.html">ESPIRITUALIDADE</a>
+        <a href="index.html#doacoes">DOAÇÕES E DÍZIMO</a>
+        <a href="index.html#contato">CONTATO</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero" id="inicio">
+    <div class="container">
+      <div class="hero-banner">
+        <div class="hero-content">
+          <div>
+            <div class="pill">⭐ Santo do Dia</div>
+            <h2 id="heroTitle">Carregando…</h2>
+            <p id="heroSub">Buscando santo + imagem + descrição automaticamente.</p>
+          </div>
+          <div class="hero-actions">
+            <button class="btn btn-solid" onclick="loadAll()">Atualizar</button>
+            <a class="btn" href="index.html#espiritualidade">Voltar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <div class="container">
+      <div class="layout">
+
+        <div>
+          <section class="card">
+            <div class="pad">
+              <div class="section-title" style="margin-top:0;">Santo do Dia</div>
+
+              <div class="pill" id="datePill">📅 —</div>
+
+              <div style="margin-top:12px;" class="saint-card">
+                <div class="saint-img" id="saintImgBox">
+                  sem imagem
+                </div>
+
+                <div>
+                  <h3 style="margin:0 0 6px;" id="saintName">—</h3>
+                  <div class="muted" style="font-weight:900;" id="sourcesLine">Fonte: —</div>
+
+                  <div class="saint-desc" id="saintDesc" style="margin-top:10px;">
+                    —
+                  </div>
+
+                  <div class="chips" style="margin-top:12px;">
+                    <a class="chip" id="wikiLink" target="_blank" rel="noopener">Abrir Wikipédia</a>
+                    <a class="chip" id="vaticanLink" target="_blank" rel="noopener">Abrir Vatican News</a>
+                  </div>
+
+                  <div id="status" class="muted" style="margin-top:10px;font-weight:900;font-size:12px;"></div>
+                </div>
+              </div>
+
+              <hr style="border:0;border-top:1px solid var(--line); margin:16px 0;">
+
+              <div class="section-title" style="margin-top:0;">Outros santos do dia</div>
+              <div class="muted" style="font-weight:800; line-height:1.6; margin-bottom:10px;">
+                Se houver mais de um, você pode clicar para carregar a imagem/descrição.
+              </div>
+              <div id="others" class="chips"></div>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top:14px;">
+            <div class="pad">
+              <div class="section-title" style="margin-top:0;">Como isso funciona</div>
+              <div class="mono">
+1) Pegamos o(s) nome(s) do santo do dia numa API (lista do ano).
+2) Buscamos no Wikipedia PT (via API) uma página correspondente.
+3) A Wikipedia REST API retorna “extract” (resumo) + “thumbnail” (imagem), quando existe.
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <aside>
+          <div class="card">
+            <div class="pad">
+              <div class="section-title" style="margin-top:0;">Acesso rápido</div>
+              <div class="widget-list">
+                <a class="widget-link" href="liturgiadiaria.html">Liturgia diária <span>→</span></a>
+                <a class="widget-link" href="aprenda-terco.html">Aprenda a rezar o Terço <span>→</span></a>
+                <a class="widget-link" href="index.html#avisos">Avisos <span>→</span></a>
+                <a class="widget-link" href="index.html#contato">Contato <span>→</span></a>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Paróquia Rainha da Paz</h4>
+          <p>Parauapebas — PA</p>
+          <p style="margin-top:8px; opacity:.9;">“Servir com alegria, comunicar com amor.”</p>
+        </div>
+        <div>
+          <h4>Menu</h4>
+          <div class="grid" style="gap:8px;">
+            <a href="index.html#avisos">Avisos</a>
+            <a href="index.html#agenda">Agenda</a>
+            <a href="index.html#pastorais">Pastorais</a>
+            <a href="index.html#comunidades">Comunidades</a>
+            <a href="index.html#galerias">Galerias</a>
+          </div>
+        </div>
+        <div>
+          <h4>Contato</h4>
+          <div class="grid" style="gap:8px;">
+            <a href="index.html#contato">Secretaria</a>
+            <a href="index.html#doacoes">Dízimo / Doações</a>
+            <a href="#">Instagram</a>
+            <a href="#">YouTube</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footnote">
+        <div>© <span id="yearNow"></span> Paróquia Rainha da Paz — PASCOM</div>
+        <div>Feito com ♥ para a evangelização</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // API 1: santos do dia (lista)
+    const SAINTS_LIST_API = "https://the-collection-of-catholic-prayers-api.vercel.app/v1/saints";
+
+    // Wikipedia: vamos usar PT primeiro (imagem/descrição em português).
+    // A REST API de “summary” é: /api/rest_v1/page/summary/{title}
+    // (documentado como endpoint de resumo).
+    const WIKI_SUMMARY = (title) =>
+      `https://pt.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}?redirect=true`;
+
+    // Para achar um título bom na Wikipédia PT, usamos o action API "opensearch" com origin=* (CORS).
+    // O MediaWiki suporta CORS e origin=* para uso em JS.
+    const WIKI_OPENSEARCH = (q) =>
+      `https://pt.wikipedia.org/w/api.php?action=opensearch&search=${encodeURIComponent(q)}&limit=5&namespace=0&format=json&origin=*`;
+
+    function fakeSearch(e){ e.preventDefault(); alert("Busca ainda não configurada."); return false; }
+
+    function setTopDates(){
+      const now = new Date();
+      const months = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+      document.getElementById("todayText").textContent =
+        `Parauapebas, ${String(now.getDate()).padStart(2,'0')} de ${months[now.getMonth()]} de ${now.getFullYear()}`;
+      document.getElementById("yearNow").textContent = now.getFullYear();
+      document.getElementById("datePill").textContent =
+        `📅 ${String(now.getDate()).padStart(2,'0')} de ${months[now.getMonth()]} de ${now.getFullYear()}`;
+    }
+
+    function setVaticanLink(){
+      const now = new Date();
+      const mm = String(now.getMonth()+1).padStart(2,'0');
+      const dd = String(now.getDate()).padStart(2,'0');
+      document.getElementById("vaticanLink").href = `https://www.vaticannews.va/pt/santo-do-dia/${mm}/${dd}.html`;
+    }
+
+    function setStatus(msg){ document.getElementById("status").textContent = msg; }
+
+    function renderImage(url){
+      const box = document.getElementById("saintImgBox");
+      if(!url){
+        box.innerHTML = "sem imagem";
+        return;
+      }
+      box.innerHTML = `<img src="${url}" alt="Imagem do santo" loading="lazy">`;
+    }
+
+    async function getSaintNamesToday(){
+      const now = new Date();
+      const m = String(now.getMonth()+1);
+      const d = String(now.getDate());
+
+      const res = await fetch(SAINTS_LIST_API, { cache:"no-store" });
+      if(!res.ok) throw new Error("Falha ao buscar lista de santos (HTTP " + res.status + ")");
+
+      const list = await res.json();
+      const today = list.filter(x => String(x.month_num) === m && String(x.saint_day) === d);
+
+      // pega nomes (pode vir vários)
+      const names = today.map(x => String(x.saint_name || "").trim()).filter(Boolean);
+      return names;
+    }
+
+    async function resolveWikiTitle(query){
+      // 1) tenta achar um título bom via opensearch (PT)
+      const r = await fetch(WIKI_OPENSEARCH(query), { cache:"no-store" });
+      if(!r.ok) return null;
+
+      const data = await r.json();
+      // formato: [query, [titles...], [descriptions...], [links...]]
+      const titles = data?.[1] || [];
+      return titles[0] || null;
+    }
+
+    async function getWikiSummaryByName(name){
+      // tenta alguns formatos comuns
+      const candidates = [
+        name,
+        "São " + name.replace(/^Saint\s+/i,""),
+        "Santa " + name.replace(/^Saint\s+/i,""),
+      ];
+
+      // primeiro tenta resolver um título real por opensearch
+      for(const c of candidates){
+        const title = await resolveWikiTitle(c);
+        if(title) {
+          const s = await fetch(WIKI_SUMMARY(title), { cache:"no-store" });
+          if(s.ok) return await s.json();
+        }
+      }
+
+      // se nada: tenta direto com o nome bruto
+      const s2 = await fetch(WIKI_SUMMARY(name), { cache:"no-store" });
+      if(s2.ok) return await s2.json();
+
+      return null;
+    }
+
+    function renderOthers(names){
+      const box = document.getElementById("others");
+      box.innerHTML = "";
+      if(!names || names.length <= 1){
+        box.innerHTML = `<span class="muted" style="font-weight:800;">—</span>`;
+        return;
+      }
+      names.slice(1).forEach(n => {
+        const b = document.createElement("button");
+        b.className = "chip";
+        b.type = "button";
+        b.textContent = n;
+        b.onclick = () => loadSaintDetails(n, true);
+        box.appendChild(b);
+      });
+    }
+
+    async function loadSaintDetails(name, manualClick=false){
+      const heroTitle = document.getElementById("heroTitle");
+      const heroSub = document.getElementById("heroSub");
+      const saintName = document.getElementById("saintName");
+      const saintDesc = document.getElementById("saintDesc");
+      const sourcesLine = document.getElementById("sourcesLine");
+      const wikiLink = document.getElementById("wikiLink");
+
+      heroTitle.textContent = "Carregando…";
+      heroSub.textContent = manualClick ? "Carregando outro santo do dia." : "Buscando imagem e descrição na Wikipédia.";
+
+      saintName.textContent = name;
+      saintDesc.textContent = "Buscando descrição…";
+      renderImage(null);
+      wikiLink.href = "https://pt.wikipedia.org/wiki/" + encodeURIComponent(name);
+
+      try{
+        const sum = await getWikiSummaryByName(name);
+
+        if(!sum || sum.type === "https://mediawiki.org/wiki/HyperSwitch/errors/not_found"){
+          sourcesLine.textContent = "Fonte: lista do dia + (Wikipédia não encontrada)";
+          saintDesc.textContent = "Não achamos uma página correspondente na Wikipédia (pt) para este nome. Você pode abrir o Vatican News pelo botão ao lado.";
+          setStatus("⚠️ Não encontrou resumo/thumbnail na Wikipédia.");
+          heroTitle.textContent = "Santo do Dia";
+          return;
+        }
+
+        const title = sum.title || name;
+        const extract = sum.extract || "Sem descrição disponível.";
+        const thumb = sum.thumbnail?.source || null;
+        const pageUrl = sum.content_urls?.desktop?.page || ("https://pt.wikipedia.org/wiki/" + encodeURIComponent(title));
+
+        document.getElementById("saintName").textContent = title;
+        document.getElementById("saintDesc").textContent = extract;
+        renderImage(thumb);
+        wikiLink.href = pageUrl;
+
+        sourcesLine.textContent = "Fonte: lista do dia + Wikipédia (pt)";
+        setStatus("✅ Carregado com imagem/descrição automaticamente.");
+        heroTitle.textContent = "Santo do Dia";
+        heroSub.textContent = "Imagem e resumo carregados automaticamente.";
+
+      }catch(err){
+        sourcesLine.textContent = "Fonte: lista do dia (falha ao buscar descrição)";
+        saintDesc.textContent = "Não foi possível carregar a descrição agora. Tente novamente.";
+        setStatus("⚠️ Erro: " + (err?.message || err));
+        heroTitle.textContent = "Santo do Dia";
+      }
+    }
+
+    async function loadAll(){
+      setStatus("Buscando santo do dia…");
+      document.getElementById("heroTitle").textContent = "Carregando…";
+      document.getElementById("heroSub").textContent = "Buscando santo do dia na API.";
+
+      try{
+        const names = await getSaintNamesToday();
+        if(!names.length){
+          document.getElementById("heroTitle").textContent = "Santo do Dia";
+          document.getElementById("saintName").textContent = "Não encontrado na lista da API para hoje.";
+          document.getElementById("saintDesc").textContent = "Você pode usar o botão Vatican News para ver o calendário do dia.";
+          renderOthers([]);
+          setStatus("⚠️ A API respondeu, mas não trouxe santo para a data.");
+          return;
+        }
+
+        renderOthers(names);
+        await loadSaintDetails(names[0], false);
+
+      }catch(err){
+        document.getElementById("heroTitle").textContent = "Santo do Dia";
+        document.getElementById("saintName").textContent = "Não foi possível carregar agora.";
+        document.getElementById("saintDesc").textContent = "Tente novamente mais tarde.";
+        renderImage(null);
+        renderOthers([]);
+        setStatus("⚠️ Erro ao buscar na API: " + (err?.message || err));
+      }
+    }
+
+    // init
+    setTopDates();
+    setVaticanLink();
+    loadAll();
+  </script>
+</body>
+</html>
