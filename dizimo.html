@@ -241,7 +241,33 @@
           <div class="hero-actions">
             <a class="btn" href="#sobre">O que é?</a>
             <a class="btn" href="#contribuir">Como contribuir</a>
-            <a class="btn btn-solid" href="#cadastro">Quero me cadastrar</a>
+            
+<section class="card" id="cadastro" style="margin-top:14px;">
+  <div class="pad">
+    <div class="section-title" style="margin-top:0;">Seja dizimista</div>
+
+    <div class="muted" style="font-weight:800; line-height:1.7;">
+      Para se cadastrar como dizimista ou tirar dúvidas sobre o dízimo,
+      entre em contato diretamente com a secretaria paroquial.
+    </div>
+
+    <div style="margin-top:16px; display:flex; flex-direction:column; gap:12px;">
+
+      <a class="btn btn-solid"
+         style="border-radius:14px; padding:14px; font-size:15px;"
+         href="https://wa.me/5594000000000"
+         target="_blank"
+         rel="noopener">
+        📱 Falar com a Secretaria pelo WhatsApp
+      </a>
+
+      <div class="muted" style="font-weight:800; font-size:12px;">
+        * Substitua o número acima pelo WhatsApp oficial da secretaria (com DDI + DDD).
+      </div>
+
+    </div>
+  </div>
+</section>
           </div>
         </div>
       </div>
@@ -317,48 +343,7 @@ CNPJ/CPF: —</div>
             </div>
           </section>
 
-          <section class="card" id="cadastro" style="margin-top:14px;">
-            <div class="pad">
-              <div class="section-title" style="margin-top:0;">Cadastro de dizimista</div>
-              <div class="muted" style="font-weight:800; line-height:1.7;">
-                Este formulário é demonstrativo (sem envio real).
-                Depois você pode ligar isso a e-mail, Google Forms, WhatsApp ou um backend.
-              </div>
-
-              <form style="margin-top:12px;" onsubmit="return submitDizimo(event)">
-                <div class="form-grid">
-                  <input class="input" required name="nome" placeholder="Nome completo" />
-                  <input class="input" required name="telefone" placeholder="Telefone/WhatsApp" />
-                  <input class="input" name="email" type="email" placeholder="E-mail (opcional)" />
-                  <select class="select" name="comunidade">
-                    <option value="">Comunidade (opcional)</option>
-                    <option>Matriz</option>
-                    <option>Comunidade 1</option>
-                    <option>Comunidade 2</option>
-                    <option>Comunidade 3</option>
-                  </select>
-                </div>
-
-                <div style="margin-top:10px;">
-                  <textarea class="textarea" name="mensagem" placeholder="Mensagem (opcional): intenção, dúvidas, melhor horário para contato…"></textarea>
-                </div>
-
-                <div class="grid" style="grid-template-columns: 1fr 1fr; gap:10px; margin-top:10px;">
-                  <button class="btn btn-solid" style="border-radius:14px; padding:12px 14px; width:100%;" type="submit">
-                    Enviar cadastro
-                  </button>
-                  <a class="btn btn-light" style="border-radius:14px; padding:12px 14px; width:100%;"
-                     href="https://wa.me/5594000000000" target="_blank" rel="noopener">
-                    Enviar pelo WhatsApp
-                  </a>
-                </div>
-
-                <div class="muted" style="margin-top:10px; font-weight:800; font-size:12px;">
-                  * Ajuste o link do WhatsApp (wa.me) com o número oficial da secretaria (com DDI/DDD).
-                </div>
-              </form>
-            </div>
-          </section>
+  
 
           <section class="card" id="duvidas" style="margin-top:14px;">
             <div class="pad">
