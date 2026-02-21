@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dízimo — Paróquia Rainha da Paz</title>
+  <meta name="description" content="Página do Dízimo: cadastro, como contribuir e canais oficiais. Paróquia Rainha da Paz — Parauapebas/PA." />
+
+  <style>
+    :root{
+      --bg:#ffffff; --text:#1f2937; --muted:#6b7280; --line:#e5e7eb;
+      --brand-900:#0b2a57; --brand-800:#0f3a79; --brand-700:#1452a6;
+      --accent:#d11b2c; --card:#ffffff; --soft:#f7f8fb;
+      --shadow:0 10px 30px rgba(0,0,0,.08); --radius:18px; --max:1120px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Arial;color:var(--text);background:var(--bg)}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(var(--max),92vw);margin:0 auto}
+    .grid{display:grid;gap:16px}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.25);
+      color:#fff;background:rgba(255,255,255,.12);transition:.2s;font-weight:800;cursor:pointer;
+    }
+    .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.18)}
+    .btn-solid{background:var(--accent);border-color:var(--accent)}
+    .btn-solid:hover{filter:brightness(.98)}
+    .btn-light{
+      background:#fff;border:1px solid var(--line);color:var(--text);
+    }
+    .btn-light:hover{background:var(--soft)}
+
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;border-radius:999px;border:1px solid var(--line);
+      color:var(--muted);font-weight:900;font-size:12px;background:#fff;
+    }
+
+    .topbar{background:var(--brand-900);color:#fff;font-size:13px}
+    .topbar .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 0;gap:14px;opacity:.98}
+    .topbar .right{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:flex-end}
+    .topbar a{opacity:.95}
+    .topbar a:hover{opacity:1;text-decoration:underline}
+
+    header{
+      background:linear-gradient(90deg,var(--brand-800),var(--brand-700));
+      color:#fff;position:sticky;top:0;z-index:50;box-shadow:0 6px 22px rgba(0,0,0,.12);
+    }
+    .header-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:18px}
+    .brand{display:flex;align-items:center;gap:14px;min-width:240px}
+    .logo{
+      width:54px;height:54px;border-radius:16px;background:rgba(255,255,255,.18);
+      display:grid;place-items:center;border:1px solid rgba(255,255,255,.25)
+    }
+    .brand h1{margin:0;font-size:18px;line-height:1.1;letter-spacing:.2px}
+    .brand p{margin:2px 0 0;font-size:12px;opacity:.9}
+
+    .search{flex:1;display:flex;justify-content:flex-end;gap:10px;align-items:center;min-width:240px}
+    .search form{
+      width:min(420px,100%);display:flex;gap:10px;align-items:center;
+      background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
+      padding:8px 10px;border-radius:999px;
+    }
+    .search input{width:100%;border:0;outline:0;background:transparent;color:#fff;font-weight:800}
+    .search input::placeholder{color:rgba(255,255,255,.8);font-weight:800}
+    .search button{border:0;background:transparent;color:#fff;font-weight:1000;cursor:pointer;opacity:.9}
+    .search button:hover{opacity:1}
+
+    nav{background:#fff;border-bottom:1px solid var(--line)}
+    .nav-inner{display:flex;gap:18px;align-items:center;padding:10px 0;overflow:auto}
+    .nav-inner a{
+      font-weight:1000;font-size:13px;color:#23324a;white-space:nowrap;
+      padding:10px 12px;border-radius:999px;transition:.18s
+    }
+    .nav-inner a:hover{background:var(--soft)}
+    .nav-inner a.active{
+      background:rgba(209,27,44,.08);color:var(--accent);border:1px solid rgba(209,27,44,.22)
+    }
+
+    .hero{padding:26px 0 18px}
+    .hero-banner{
+      border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);
+      background:
+        radial-gradient(1200px 300px at 10% 20%, rgba(20,82,166,.22), transparent 60%),
+        radial-gradient(900px 260px at 90% 80%, rgba(209,27,44,.18), transparent 60%),
+        linear-gradient(90deg,#0f3a79,#1452a6);
+      color:#fff;
+    }
+    .hero-content{padding:22px;display:flex;gap:18px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}
+    .hero h2{margin:0;font-size:22px;letter-spacing:.2px}
+    .hero p{margin:8px 0 0;opacity:.95;max-width:820px}
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+    main{padding:16px 0 40px}
+    .layout{display:grid;grid-template-columns:1.6fr .9fr;gap:24px;align-items:start}
+    .section-title{display:flex;align-items:center;gap:10px;margin:14px 0 14px;font-weight:1000;letter-spacing:.2px}
+    .section-title::before{content:"";width:4px;height:18px;background:var(--accent);border-radius:999px;display:inline-block}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 8px 22px rgba(0,0,0,.06);overflow:hidden}
+    .pad{padding:16px}
+    .muted{color:var(--muted)}
+    .mono{white-space:pre-wrap;line-height:1.75;margin:10px 0 0}
+
+    .widget-list{display:flex;flex-direction:column;gap:10px}
+    .widget-link{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:12px 14px;border-radius:16px;border:1px solid var(--line);
+      background:#fff;font-weight:1000;
+    }
+    .widget-link span{color:var(--muted);font-weight:900;font-size:12px}
+    .widget-link:hover{background:var(--soft)}
+
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .input, .textarea, .select{
+      width:100%;padding:12px 14px;border-radius:14px;border:1px solid var(--line);
+      font-weight:800;outline:none;background:#fff;
+    }
+    .textarea{resize:vertical;min-height:120px}
+    .notice{
+      border:1px dashed rgba(209,27,44,.35);
+      background:rgba(209,27,44,.05);
+      border-radius:16px;
+      padding:12px;
+      color:#7a1320;
+      font-weight:800;
+      line-height:1.6;
+    }
+
+    .copybox{
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:16px;
+      padding:12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .copybox code{font-weight:1000}
+    .copybox button{
+      border:1px solid var(--line);
+      background:var(--soft);
+      border-radius:12px;
+      padding:10px 12px;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .copybox button:hover{filter:brightness(.98)}
+
+    footer{margin-top:34px;border-top:1px solid var(--line);background:#0b1f3f;color:#fff;padding:26px 0}
+    .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:18px;align-items:start}
+    footer h4{margin:0 0 10px}
+    footer p{margin:0;opacity:.9}
+    footer a{opacity:.92}
+    footer a:hover{opacity:1;text-decoration:underline}
+    .footnote{
+      margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.14);
+      display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;opacity:.9;font-size:13px
+    }
+
+    @media (max-width:980px){
+      .layout{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr}
+      .form-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="container">
+      <div class="inner">
+        <div id="todayText">Parauapebas, -- de -- de ----</div>
+        <div class="right">
+          <a href="index.html#contato">Secretaria</a>
+          <span style="opacity:.6">•</span>
+          <a href="dizimo.html">Dízimo</a>
+          <span style="opacity:.6">•</span>
+          <a href="index.html#avisos">Avisos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <div class="brand">
+          <div class="logo" aria-label="Logo"><span style="font-weight:1000;font-size:18px;">✝</span></div>
+          <div>
+            <h1>Paróquia Rainha da Paz</h1>
+            <p>Parauapebas — PA • Pastoral da Comunicação</p>
+          </div>
+        </div>
+
+        <div class="search">
+          <form onsubmit="return fakeSearch(event)">
+            <input type="search" placeholder="O que procura?" aria-label="Buscar no site" />
+            <button title="Buscar" aria-label="Buscar">🔎</button>
+          </form>
+          <a class="btn btn-solid" href="#contribuir">Contribuir</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html#inicio">INÍCIO</a>
+        <a href="index.html#paroquo">NOSSO PÁROCO</a>
+        <a href="index.html#pastorais">PASTORAIS</a>
+        <a href="index.html#comunidades">COMUNIDADES</a>
+        <a href="index.html#avisos">AVISOS</a>
+        <a href="index.html#galerias">GALERIAS</a>
+        <a href="liturgiadiaria.html">LITURGIA</a>
+        <a href="santo-do-dia.html">SANTO DO DIA</a>
+        <a class="active" href="dizimo.html">DÍZIMO</a>
+        <a href="index.html#contato">CONTATO</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="container">
+      <div class="hero-banner">
+        <div class="hero-content">
+          <div>
+            <div class="pill">❤️ Dízimo</div>
+            <h2>Seja dizimista: um gesto de fé e compromisso</h2>
+            <p>
+              O dízimo é partilha, gratidão e participação na missão da Igreja.
+              Aqui você encontra como contribuir e como se cadastrar como dizimista.
+            </p>
+          </div>
+          <div class="hero-actions">
+            <a class="btn" href="#sobre">O que é?</a>
+            <a class="btn" href="#contribuir">Como contribuir</a>
+            <a class="btn btn-solid" href="#cadastro">Quero me cadastrar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <div class="container">
+      <div class="layout">
+
+        <!-- COLUNA PRINCIPAL -->
+        <div>
+
+          <section class="card" id="sobre">
+            <div class="pad">
+              <div class="section-title" style="margin-top:0;">O que é o dízimo?</div>
+              <div class="muted" style="font-weight:800; line-height:1.7;">
+                O dízimo é uma contribuição regular e consciente para sustentar a vida e a missão da paróquia:
+                <b>evangelização</b>, <b>ações sociais</b>, <b>manutenção</b> e <b>formação</b>.
+                Mais que um valor, é um compromisso de fé e pertença.
+              </div>
+
+              <div class="grid" style="grid-template-columns:1fr; gap:12px; margin-top:14px;">
+                <div class="notice">
+                  ✅ Transparência: se quiser, você pode colocar aqui um link para prestação de contas,
+                  ou um resumo mensal das ações da paróquia.
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" id="contribuir" style="margin-top:14px;">
+            <div class="pad">
+              <div class="section-title" style="margin-top:0;">Como contribuir</div>
+              <div class="muted" style="font-weight:800; line-height:1.7;">
+                Você pode contribuir presencialmente na secretaria/celebrações ou via transferência/Pix.
+                Substitua os dados abaixo pelos dados oficiais da paróquia.
+              </div>
+
+              <div class="grid" style="grid-template-columns:1fr; gap:12px; margin-top:12px;">
+                <div class="card" style="box-shadow:none;">
+                  <div class="pad">
+                    <div class="pill">💠 Pix (Chave)</div>
+                    <div class="copybox" style="margin-top:10px;">
+                      <code id="pixKey">SUA-CHAVE-PIX-AQUI</code>
+                      <button type="button" onclick="copyText('pixKey')">Copiar</button>
+                    </div>
+                    <div class="muted" style="margin-top:8px;font-weight:800;font-size:12px;">
+                      Dica: se a chave for e-mail/celular/CNPJ, fica mais fácil para o fiel.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card" style="box-shadow:none;">
+                  <div class="pad">
+                    <div class="pill">🏦 Dados bancários (opcional)</div>
+                    <div class="mono" id="bankData">Banco: —
+Agência: —
+Conta: —
+Titular: —
+CNPJ/CPF: —</div>
+                    <div class="muted" style="margin-top:8px;font-weight:800;font-size:12px;">
+                      Se vocês só usam Pix, pode remover esta caixa.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+                <a class="btn btn-solid" style="border-radius:14px;" href="#cadastro">Quero ser dizimista</a>
+                <a class="btn btn-light" style="border-radius:14px;" href="index.html#contato">Falar com a secretaria</a>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" id="cadastro" style="margin-top:14px;">
+            <div class="pad">
+              <div class="section-title" style="margin-top:0;">Cadastro de dizimista</div>
+              <div class="muted" style="font-weight:800; line-height:1.7;">
+                Este formulário é demonstrativo (sem envio real).
+                Depois você pode ligar isso a e-mail, Google Forms, WhatsApp ou um backend.
+              </div>
+
+              <form style="margin-top:12px;" onsubmit="return submitDizimo(event)">
+                <div class="form-grid">
+                  <input class="input" required name="nome" placeholder="Nome completo" />
+                  <input class="input" required name="telefone" placeholder="Telefone/WhatsApp" />
+                  <input class="input" name="email" type="email" placeholder="E-mail (opcional)" />
+                  <select class="select" name="comunidade">
+                    <option value="">Comunidade (opcional)</option>
+                    <option>Matriz</option>
+                    <option>Comunidade 1</option>
+                    <option>Comunidade 2</option>
+                    <option>Comunidade 3</option>
+                  </select>
+                </div>
+
+                <div style="margin-top:10px;">
+                  <textarea class="textarea" name="mensagem" placeholder="Mensagem (opcional): intenção, dúvidas, melhor horário para contato…"></textarea>
+                </div>
+
+                <div class="grid" style="grid-template-columns: 1fr 1fr; gap:10px; margin-top:10px;">
+                  <button class="btn btn-solid" style="border-radius:14px; padding:12px 14px; width:100%;" type="submit">
+                    Enviar cadastro
+                  </button>
+                  <a class="btn btn-light" style="border-radius:14px; padding:12px 14px; width:100%;"
+                     href="https://wa.me/5594000000000" target="_blank" rel="noopener">
+                    Enviar pelo WhatsApp
+                  </a>
+                </div>
+
+                <div class="muted" style="margin-top:10px; font-weight:800; font-size:12px;">
+                  * Ajuste o link do WhatsApp (wa.me) com o número oficial da secretaria (com DDI/DDD).
+                </div>
+              </form>
+            </div>
+          </section>
+
+          <section class="card" id="duvidas" style="margin-top:14px;">
+            <div class="pad">
+              <div class="section-title" style="margin-top:0;">Dúvidas frequentes</div>
+
+              <div class="grid" style="grid-template-columns:1fr; gap:12px;">
+                <div class="card" style="box-shadow:none;">
+                  <div class="pad">
+                    <div style="font-weight:1000;">Precisa ser 10%?</div>
+                    <div class="muted" style="font-weight:800; line-height:1.7; margin-top:8px;">
+                      Não. O mais importante é a <b>consciência</b> e a <b>regularidade</b>.
+                      Cada fiel contribui conforme sua possibilidade.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card" style="box-shadow:none;">
+                  <div class="pad">
+                    <div style="font-weight:1000;">Como a paróquia usa o dízimo?</div>
+                    <div class="muted" style="font-weight:800; line-height:1.7; margin-top:8px;">
+                      Manutenção, contas, formação, celebrações, obras e ações sociais.
+                      (Aqui vocês podem colocar um resumo e link de transparência.)
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card" style="box-shadow:none;">
+                  <div class="pad">
+                    <div style="font-weight:1000;">Posso contribuir online sem ser cadastrado?</div>
+                    <div class="muted" style="font-weight:800; line-height:1.7; margin-top:8px;">
+                      Sim. O cadastro ajuda a paróquia a manter contato, agradecer e organizar a pastoral do dízimo.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside>
+          <div class="card">
+            <div class="pad">
+              <div class="section-title" style="margin-top:0;">Atalhos</div>
+              <div class="widget-list">
+                <a class="widget-link" href="#contribuir">Como contribuir <span>→</span></a>
+                <a class="widget-link" href="#cadastro">Cadastro de dizimista <span>→</span></a>
+                <a class="widget-link" href="#duvidas">Dúvidas frequentes <span>→</span></a>
+                <a class="widget-link" href="index.html#contato">Contato/Secretaria <span>→</span></a>
+              </div>
+
+              <hr style="border:0;border-top:1px solid var(--line); margin:16px 0;">
+
+              <div class="section-title" style="margin-top:0;">Edite aqui</div>
+              <div class="muted" style="font-weight:800; line-height:1.7;">
+                • Chave Pix<br>
+                • Titular / CNPJ<br>
+                • WhatsApp da secretaria
+              </div>
+            </div>
+          </div>
+
+          <div style="height:14px;"></div>
+
+          <div class="card">
+            <div class="pad">
+              <div class="section-title" style="margin-top:0;">Versículo</div>
+              <div class="muted" style="font-weight:800; line-height:1.7;">
+                “Cada um contribua segundo tiver decidido no seu coração,
+                sem tristeza nem constrangimento; Deus ama a quem dá com alegria.”
+              </div>
+              <div class="muted" style="margin-top:10px; font-weight:1000;">
+                (2 Cor 9,7)
+              </div>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Paróquia Rainha da Paz</h4>
+          <p>Parauapebas — PA</p>
+          <p style="margin-top:8px; opacity:.9;">“Servir com alegria, comunicar com amor.”</p>
+        </div>
+        <div>
+          <h4>Menu</h4>
+          <div class="grid" style="gap:8px;">
+            <a href="index.html#avisos">Avisos</a>
+            <a href="index.html#agenda">Agenda</a>
+            <a href="index.html#pastorais">Pastorais</a>
+            <a href="index.html#comunidades">Comunidades</a>
+            <a href="index.html#galerias">Galerias</a>
+          </div>
+        </div>
+        <div>
+          <h4>Contato</h4>
+          <div class="grid" style="gap:8px;">
+            <a href="index.html#contato">Secretaria</a>
+            <a href="index.html#doacoes">Doações</a>
+            <a href="#">Instagram</a>
+            <a href="#">YouTube</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footnote">
+        <div>© <span id="yearNow"></span> Paróquia Rainha da Paz — PASCOM</div>
+        <div>Feito com ♥ para a evangelização</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function fakeSearch(e){ e.preventDefault(); alert("Busca ainda não configurada."); return false; }
+
+    (function(){
+      const now = new Date();
+      const months = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+      document.getElementById("todayText").textContent =
+        `Parauapebas, ${String(now.getDate()).padStart(2,'0')} de ${months[now.getMonth()]} de ${now.getFullYear()}`;
+      document.getElementById("yearNow").textContent = now.getFullYear();
+    })();
+
+    async function copyText(id){
+      const text = document.getElementById(id).textContent.trim();
+      try{
+        await navigator.clipboard.writeText(text);
+        alert("Copiado: " + text);
+      }catch{
+        alert("Não deu pra copiar automaticamente. Copie manualmente: " + text);
+      }
+    }
+
+    function submitDizimo(e){
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const nome = fd.get("nome");
+      alert("Cadastro enviado (modo demonstração). Obrigado, " + nome + "!");
+      e.target.reset();
+      return false;
+    }
+  </script>
+</body>
+</html>
