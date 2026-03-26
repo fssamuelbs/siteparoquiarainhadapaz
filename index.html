@@ -1,1494 +1,971 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Paróquia Rainha da Paz — Parauapebas</title>
-    <meta
-      name="description"
-      content="Site oficial da Paróquia Rainha da Paz em Parauapebas. Avisos, agenda, pastorais, comunidades, espiritualidade, doações e dízimo."
-    />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes, viewport-fit=cover" />
+  <title>Paróquia Rainha da Paz — Parauapebas</title>
+  <meta name="description" content="Site oficial da Paróquia Rainha da Paz em Parauapebas. Avisos, agenda, pastorais, comunidades, espiritualidade, doações e dízimo." />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-    <style>
-      :root {
-        --bg: #ffffff;
-        --text: #1f2937;
-        --muted: #6b7280;
-        --line: #e5e7eb;
+    :root {
+      --bg: #ffffff;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      --brand: #0f3a79;
+      --brand-dark: #0b2a57;
+      --accent: #d11b2c;
+      --accent-light: #fee2e2;
+      --soft: #f8fafc;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --radius: 1rem;
+    }
 
-        /* Paleta “diocese” (azul + vermelho discreto) */
-        --brand-900: #0b2a57;
-        --brand-800: #0f3a79;
-        --brand-700: #1452a6;
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
 
-        --accent: #d11b2c; /* vermelho dos marcadores */
-        --card: #ffffff;
-        --soft: #f7f8fb;
+    /* Layout mobile-first */
+    .container {
+      width: 100%;
+      padding: 0 16px;
+    }
 
-        --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        --radius: 18px;
+    /* Header mobile */
+    .topbar {
+      background: var(--brand-dark);
+      color: white;
+      font-size: 12px;
+      padding: 8px 0;
+      text-align: center;
+    }
 
-        --max: 1120px;
-      }
+    .topbar .inner {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+    }
 
-      * {
-        box-sizing: border-box;
-      }
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
-          Cantarell, Noto Sans, Arial;
-        color: var(--text);
-        background: var(--bg);
-      }
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-      img {
-        max-width: 100%;
-        display: block;
-      }
+    .topbar .right {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
-      /* Util */
+    .topbar a {
+      color: white;
+      text-decoration: none;
+      opacity: 0.9;
+    }
+
+    /* Header principal */
+    header {
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 12px 0;
+    }
+
+    .header-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .logo {
+      width: 48px;
+      height: 48px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .logo img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .brand h1 {
+      font-size: 1.1rem;
+      line-height: 1.3;
+    }
+
+    .brand p {
+      font-size: 0.7rem;
+      opacity: 0.9;
+    }
+
+    .search-area {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .search-form {
+      flex: 1;
+      background: rgba(255,255,255,0.15);
+      border-radius: 30px;
+      padding: 8px 12px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .search-form input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .search-form input::placeholder {
+      color: rgba(255,255,255,0.8);
+    }
+
+    .search-form button {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 16px;
+    }
+
+    .btn-dizimo {
+      background: var(--accent);
+      padding: 8px 14px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 600;
+      color: white;
+      white-space: nowrap;
+    }
+
+    /* Navegação horizontal com scroll */
+    nav {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 98px;
+      z-index: 99;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+
+    .nav-inner {
+      display: flex;
+      gap: 4px;
+      padding: 8px 16px;
+      min-width: min-content;
+    }
+
+    .nav-inner a {
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      border-radius: 30px;
+      color: var(--text);
+    }
+
+    .nav-inner a.active {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 20px 0;
+    }
+
+    .hero-banner {
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      color: white;
+    }
+
+    .hero h2 {
+      font-size: 1.4rem;
+      margin: 12px 0 8px;
+      line-height: 1.3;
+    }
+
+    .hero p {
+      font-size: 0.85rem;
+      opacity: 0.95;
+      margin-bottom: 16px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 10px 18px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 13px;
+      display: inline-block;
+    }
+
+    .btn-outline {
+      background: rgba(255,255,255,0.2);
+      color: white;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* Cards e seções */
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 24px 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 4px;
+      height: 20px;
+      background: var(--accent);
+      border-radius: 4px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .card-pad {
+      padding: 16px;
+    }
+
+    /* Destaque */
+    .featured {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .featured-img {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(0deg, rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=600&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Lista de notícias */
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .news-item {
+      display: flex;
+      gap: 12px;
+      padding: 12px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    .news-thumb {
+      width: 80px;
+      height: 70px;
+      border-radius: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #eef2f8;
+    }
+
+    .news-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .news-content {
+      flex: 1;
+    }
+
+    .news-date {
+      font-size: 11px;
+      color: var(--text-light);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .news-title {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    /* Grid espiritualidade */
+    .spirit-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .spirit-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 8px;
+      text-align: center;
+    }
+
+    .spirit-icon {
+      font-size: 2.5rem;
+      margin-bottom: 8px;
+    }
+
+    .spirit-card h5 {
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* Agenda mobile */
+    .agenda {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .weekdays-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      display: flex;
+      gap: 4px;
+      padding: 12px;
+      background: var(--soft);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .day-btn {
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+      background: white;
+      border: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .day-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .agenda-panel {
+      padding: 16px;
+    }
+
+    .agenda-item {
+      background: var(--soft);
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-left: 3px solid var(--accent);
+    }
+
+    .agenda-time {
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .agenda-title {
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .agenda-place {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 4px;
+    }
+
+    /* Lista de comunidades */
+    .comunidades-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .comunidades-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .comunidades-list li:last-child {
+      border-bottom: none;
+    }
+
+    /* Sidebar widgets */
+    .profile-card {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto 12px;
+      overflow: hidden;
+      border: 3px solid var(--accent-light);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .quick-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    /* Formulário */
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    /* Doações */
+    .donation-box {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .pix-code {
+      background: var(--soft);
+      padding: 12px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--brand-dark);
+      color: white;
+      margin-top: 40px;
+      padding: 32px 0 20px;
+    }
+
+    .footer-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .footer-section h4 {
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+
+    .footer-section a {
+      color: white;
+      opacity: 0.8;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+
+    .footer-bottom {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      text-align: center;
+      font-size: 12px;
+    }
+
+    /* Utilitários */
+    .text-muted {
+      color: var(--text-light);
+      font-size: 13px;
+    }
+
+    .mt-2 {
+      margin-top: 8px;
+    }
+
+    .mb-2 {
+      margin-bottom: 8px;
+    }
+
+    /* Desktop improvements */
+    @media (min-width: 768px) {
       .container {
-        width: min(var(--max), 92vw);
+        max-width: 1200px;
         margin: 0 auto;
-      }
-      .row {
-        display: flex;
-        gap: 24px;
-        align-items: stretch;
-      }
-      .grid {
-        display: grid;
-        gap: 16px;
-      }
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 10px 14px;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        color: #fff;
-        background: rgba(255, 255, 255, 0.12);
-        transition: 0.2s;
-        font-weight: 600;
-      }
-      .btn:hover {
-        transform: translateY(-1px);
-        background: rgba(255, 255, 255, 0.18);
-      }
-      .btn-solid {
-        background: var(--accent);
-        border-color: var(--accent);
-        color: #fff;
-      }
-      .btn-solid:hover {
-        filter: brightness(0.98);
-      }
-      .pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 6px 10px;
-        border-radius: 999px;
-        border: 1px solid var(--line);
-        color: var(--muted);
-        font-weight: 600;
-        font-size: 12px;
-        background: #fff;
+        padding: 0 24px;
       }
 
-      /* Topbar */
-      .topbar {
-        background: var(--brand-900);
-        color: #fff;
-        font-size: 13px;
-      }
-      .topbar .inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 0;
-        gap: 14px;
-        opacity: 0.98;
-      }
-      .topbar .right {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: flex-end;
-      }
-      .topbar a {
-        opacity: 0.95;
-      }
-      .topbar a:hover {
-        opacity: 1;
-        text-decoration: underline;
-      }
-
-      /* Header */
-      header {
-        background: linear-gradient(90deg, var(--brand-800), var(--brand-700));
-        color: #fff;
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        box-shadow: 0 6px 22px rgba(0, 0, 0, 0.12);
-      }
       .header-inner {
-        display: flex;
-        align-items: center;
+        flex-direction: row;
         justify-content: space-between;
-        padding: 18px 0;
-        gap: 18px;
+        align-items: center;
       }
+
       .brand {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        min-width: 240px;
-      }
-      .logo {
-        width: 54px;
-        height: 54px;
-        border-radius: 16px;
-        background: rgba(255, 255, 255, 0.18);
-        display: grid;
-        place-items: center;
-        border: 1px solid rgba(255, 255, 255, 0.25);
-      }
-      .brand h1 {
-        margin: 0;
-        font-size: 18px;
-        line-height: 1.1;
-        letter-spacing: 0.2px;
-      }
-      .brand p {
-        margin: 2px 0 0;
-        font-size: 12px;
-        opacity: 0.9;
+        justify-content: flex-start;
       }
 
-      .search {
-        flex: 1;
-        display: flex;
-        justify-content: flex-end;
-        gap: 10px;
-        align-items: center;
-        min-width: 240px;
-      }
-      .search form {
-        width: min(420px, 100%);
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        background: rgba(255, 255, 255, 0.12);
-        border: 1px solid rgba(255, 255, 255, 0.22);
-        padding: 8px 10px;
-        border-radius: 999px;
-      }
-      .search input {
-        width: 100%;
-        border: 0;
-        outline: 0;
-        background: transparent;
-        color: #fff;
-        font-weight: 600;
-      }
-      .search input::placeholder {
-        color: rgba(255, 255, 255, 0.8);
-        font-weight: 600;
-      }
-      .search button {
-        border: 0;
-        background: transparent;
-        color: #fff;
-        font-weight: 800;
-        cursor: pointer;
-        opacity: 0.9;
-      }
-      .search button:hover {
-        opacity: 1;
+      .search-area {
+        flex: 0 1 auto;
       }
 
-      /* Nav */
+      .search-form {
+        min-width: 260px;
+      }
+
       nav {
-        background: #fff;
-        border-bottom: 1px solid var(--line);
-      }
-      .nav-inner {
-        display: flex;
-        gap: 18px;
-        align-items: center;
-        padding: 10px 0;
-        overflow: auto;
-      }
-      .nav-inner a {
-        font-weight: 800;
-        font-size: 13px;
-        color: #23324a;
-        white-space: nowrap;
-        padding: 10px 12px;
-        border-radius: 999px;
-        transition: 0.18s;
-      }
-      .nav-inner a:hover {
-        background: var(--soft);
-      }
-      .nav-inner a.active {
-        background: rgba(209, 27, 44, 0.08);
-        color: var(--accent);
-        border: 1px solid rgba(209, 27, 44, 0.22);
+        top: 86px;
       }
 
-      /* Hero */
-      .hero {
-        padding: 26px 0 18px;
-        background: linear-gradient(180deg, #fff, #fff);
-      }
-      .hero-banner {
-        border-radius: var(--radius);
-        overflow: hidden;
-        box-shadow: var(--shadow);
-        border: 1px solid var(--line);
-        position: relative;
-        min-height: 190px;
-        background: radial-gradient(
-            1200px 300px at 10% 20%,
-            rgba(20, 82, 166, 0.22),
-            transparent 60%
-          ),
-          radial-gradient(
-            900px 260px at 90% 80%,
-            rgba(209, 27, 44, 0.18),
-            transparent 60%
-          ),
-          linear-gradient(90deg, #0f3a79, #1452a6);
-        color: #fff;
-      }
-      .hero-content {
-        padding: 26px;
-        display: flex;
-        gap: 18px;
-        align-items: flex-end;
-        justify-content: space-between;
-        flex-wrap: wrap;
-      }
-      .hero h2 {
-        margin: 0;
-        font-size: 22px;
-        letter-spacing: 0.2px;
-      }
-      .hero p {
-        margin: 8px 0 0;
-        opacity: 0.95;
-        max-width: 680px;
-      }
-      .hero-actions {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-
-      /* Main layout */
-      main {
-        padding: 16px 0 40px;
-      }
       .layout {
         display: grid;
-        grid-template-columns: 1.6fr 0.9fr;
+        grid-template-columns: 1fr 320px;
         gap: 24px;
-        align-items: start;
       }
 
-      /* Section header with red bar */
-      .section-title {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin: 14px 0 14px;
-        font-weight: 900;
-        letter-spacing: 0.2px;
-      }
-      .section-title::before {
-        content: "";
-        width: 4px;
-        height: 18px;
-        background: var(--accent);
-        border-radius: 999px;
-        display: inline-block;
-      }
-
-      /* Cards */
-      .card {
-        background: var(--card);
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
-        overflow: hidden;
-      }
-      .card .pad {
-        padding: 16px;
-      }
-      .muted {
-        color: var(--muted);
-      }
-
-      /* Destaque */
       .featured {
-        display: grid;
-        grid-template-columns: 1.15fr 1fr;
-        gap: 0;
-        overflow: hidden;
-      }
-      .featured .img {
-        min-height: 240px;
-        background: linear-gradient(
-            120deg,
-            rgba(0, 0, 0, 0.15),
-            rgba(0, 0, 0, 0.55)
-          ),
-          url("https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1400&q=70");
-        background-size: cover;
-        background-position: center;
-      }
-      .featured .txt {
-        padding: 18px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        background: #fff;
-      }
-      .featured h3 {
-        margin: 0;
-        font-size: 20px;
-      }
-      .featured p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.45;
-      }
-      .meta {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin-top: auto;
-      }
-      .meta .pill {
-        background: var(--soft);
+        flex-direction: row;
       }
 
-      /* News lists (two columns like “Notícias da Diocese / Notícias da Igreja”) */
+      .featured-img {
+        width: 40%;
+        height: auto;
+        min-height: 220px;
+      }
+
       .news-columns {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 16px;
       }
-      .news-item {
-        display: flex;
-        gap: 12px;
-        padding: 12px;
-        border-radius: 16px;
-        border: 1px solid var(--line);
-        background: #fff;
-        transition: 0.18s;
-      }
-      .news-item:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-      }
-      .thumb {
-        width: 96px;
-        height: 72px;
-        border-radius: 14px;
-        background: linear-gradient(
-          120deg,
-          rgba(20, 82, 166, 0.25),
-          rgba(209, 27, 44, 0.18)
-        );
-        overflow: hidden;
-        border: 1px solid var(--line);
-        flex: 0 0 auto;
-      }
-      .thumb img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .news-item h4 {
-        margin: 0;
-        font-size: 14px;
-        line-height: 1.25;
-      }
-      .news-item .date {
-        font-size: 12px;
-        color: var(--muted);
-        margin-bottom: 4px;
-        font-weight: 700;
-      }
 
-      /* Sidebar widgets */
-      .profile {
-        text-align: center;
-        padding: 18px;
-      }
-      .avatar {
-        width: 118px;
-        height: 118px;
-        border-radius: 999px;
-        margin: 0 auto 12px;
-        border: 4px solid rgba(20, 82, 166, 0.25);
-        outline: 6px solid rgba(209, 27, 44, 0.08);
-        overflow: hidden;
-      }
-      .avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .profile h3 {
-        margin: 6px 0 4px;
-      }
-      .profile p {
-        margin: 0;
-        color: var(--muted);
-      }
-      .profile .btn-solid {
-        margin-top: 12px;
-        width: 100%;
-      }
-
-      .widget-list {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      .widget-link {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 12px 14px;
-        border-radius: 16px;
-        border: 1px solid var(--line);
-        background: #fff;
-        font-weight: 900;
-      }
-      .widget-link span {
-        color: var(--muted);
-        font-weight: 800;
-        font-size: 12px;
-      }
-      .widget-link:hover {
-        background: var(--soft);
-      }
-
-      /* Espiritualidade icons row */
-      .spirit {
-        margin-top: 18px;
-        background: var(--soft);
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        padding: 16px;
-      }
       .spirit-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 12px;
-        margin-top: 12px;
-      }
-      .icon-card {
-        background: #fff;
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        padding: 12px;
-        text-align: center;
-        transition: 0.18s;
-      }
-      .icon-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 22px rgba(0, 0, 0, 0.08);
-      }
-      .circle {
-        width: 74px;
-        height: 74px;
-        border-radius: 999px;
-        margin: 0 auto 10px;
-        border: 4px solid rgba(20, 82, 166, 0.22);
-        outline: 8px solid rgba(20, 82, 166, 0.06);
-        display: grid;
-        place-items: center;
-        font-size: 28px;
-      }
-      .icon-card h5 {
-        margin: 0;
-        font-size: 12px;
-        font-weight: 1000;
-        letter-spacing: 0.25px;
-      }
-      .icon-card p {
-        margin: 6px 0 0;
-        font-size: 12px;
-        color: var(--muted);
+        grid-template-columns: repeat(4, 1fr);
       }
 
-      /* Agenda block */
-      .agenda {
-        margin-top: 18px;
-        border-radius: var(--radius);
-        overflow: hidden;
-        border: 1px solid var(--line);
-        background: #fff;
-        box-shadow: var(--shadow);
-      }
-      .agenda-top {
-        display: flex;
-        gap: 18px;
-        align-items: stretch;
-        padding: 16px;
-      }
-      .weekdays {
-        width: 230px;
-        background: linear-gradient(180deg, var(--brand-900), var(--brand-700));
-        border-radius: 18px;
-        overflow: hidden;
-      }
-      .weekdays button {
-        width: 100%;
-        border: 0;
-        background: transparent;
-        color: #fff;
-        padding: 12px 14px;
-        text-align: left;
-        font-weight: 1000;
-        cursor: pointer;
-        opacity: 0.95;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-      }
-      .weekdays button:hover {
-        opacity: 1;
-        background: rgba(255, 255, 255, 0.08);
-      }
-      .weekdays button.active {
-        background: #fff;
-        color: var(--brand-900);
-      }
-      .agenda-panel {
-        flex: 1;
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        padding: 14px;
-        background: var(--soft);
-        min-height: 210px;
-      }
-      .agenda-panel h4 {
-        margin: 0 0 10px;
-      }
-      .agenda-item {
-        background: #fff;
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        padding: 12px;
-        margin-bottom: 10px;
-      }
-      .agenda-item .time {
-        font-weight: 1000;
-      }
-      .agenda-item .place {
-        color: var(--muted);
-        font-weight: 800;
-        font-size: 12px;
-      }
-
-      .agenda-footer {
-        padding: 12px 16px;
-        border-top: 1px solid var(--line);
-        display: flex;
-        justify-content: flex-end;
-        background: #fff;
-      }
-      .agenda-footer a {
-        font-weight: 1000;
-        color: var(--brand-800);
-      }
-      .agenda-footer a:hover {
-        text-decoration: underline;
-      }
-
-      /* Footer */
-      footer {
-        margin-top: 34px;
-        border-top: 1px solid var(--line);
-        background: #0b1f3f;
-        color: #fff;
-        padding: 26px 0;
-      }
       .footer-grid {
-        display: grid;
-        grid-template-columns: 1.4fr 1fr 1fr;
-        gap: 18px;
-        align-items: start;
-      }
-      footer h4 {
-        margin: 0 0 10px;
-      }
-      footer p {
-        margin: 0;
-        opacity: 0.9;
-      }
-      footer a {
-        opacity: 0.92;
-      }
-      footer a:hover {
-        opacity: 1;
-        text-decoration: underline;
-      }
-      .footnote {
-        margin-top: 18px;
-        padding-top: 16px;
-        border-top: 1px solid rgba(255, 255, 255, 0.14);
-        display: flex;
+        flex-direction: row;
         justify-content: space-between;
-        gap: 12px;
-        flex-wrap: wrap;
-        opacity: 0.9;
-        font-size: 13px;
       }
 
-      /* Responsive */
-      @media (max-width: 980px) {
-        .layout {
-          grid-template-columns: 1fr;
-        }
-        .news-columns {
-          grid-template-columns: 1fr;
-        }
-        .featured {
-          grid-template-columns: 1fr;
-        }
-        .featured .img {
-          min-height: 200px;
-        }
-        .spirit-grid {
-          grid-template-columns: repeat(3, 1fr);
-        }
-        .agenda-top {
-          flex-direction: column;
-        }
-        .weekdays {
-          width: 100%;
-          display: flex;
-          overflow: auto;
-          border-radius: 16px;
-        }
-        .weekdays button {
-          text-align: center;
-          border-bottom: 0;
-          border-right: 1px solid rgba(255, 255, 255, 0.14);
-          white-space: nowrap;
-        }
-        .footer-grid {
-          grid-template-columns: 1fr;
-        }
+      .donation-box {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
       }
-      @media (max-width: 520px) {
-        .brand {
-          min-width: unset;
-        }
-        .search {
-          min-width: unset;
-        }
-        .hero-content {
-          padding: 18px;
-        }
-        .spirit-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-        .thumb {
-          width: 86px;
-          height: 64px;
-        }
-      }
-    </style>
-  </head>
+    }
 
-  <body>
-    <!-- TOPBAR -->
-    <div class="topbar">
-      <div class="container">
-        <div class="inner">
-          <div id="todayText">Parauapebas, -- de -- de ----</div>
-          <div class="right">
-            <a href="#contato">Secretaria</a>
-            <span style="opacity: 0.6">•</span>
-            <a href="#doacoes">Doações & Dízimo</a>
-            <span style="opacity: 0.6">•</span>
-            <a href="#avisos">Avisos</a>
-          </div>
+    @media (max-width: 480px) {
+      .hero h2 {
+        font-size: 1.2rem;
+      }
+      
+      .btn {
+        padding: 8px 14px;
+        font-size: 12px;
+      }
+    }
+
+    button, .btn, [role="button"] {
+      cursor: pointer;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="container">
+      <div class="inner">
+        <div id="todayText"></div>
+        <div class="right">
+          <a href="#contato">Secretaria</a>
+          <a href="#doacoes">Dízimo</a>
+          <a href="#avisos">Avisos</a>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- HEADER -->
-    <header>
-      <div class="container">
-        <div class="header-inner">
-          <div class="brand">
-            <div class="logo" aria-label="Logo">
-              <!-- Troque por uma imagem depois -->
-              <span style="font-weight: 1000; font-size: 18px"></span>
-              <img src="https://i.postimg.cc/3NFpq7Zc/Rainha-da-paz-02.png" alt="">
-            </div>
-            <div>
-              <h1>Paróquia Rainha da Paz</h1>
-              <p>Parauapebas — PA • Site Oficial</p>
-            </div>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <div class="brand">
+          <div class="logo">
+            <img src="https://i.postimg.cc/3NFpq7Zc/Rainha-da-paz-02.png" alt="Logo">
           </div>
-
-          <div class="search">
-            <form onsubmit="return fakeSearch(event)">
-              <input
-                type="search"
-                placeholder="O que procura?"
-                aria-label="Buscar no site"
-              />
-              <button title="Buscar" aria-label="Buscar">🔎</button>
-            </form>
-            <a class="btn btn-solid" href="#doacoes">Dízimo / Ofertas</a>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- NAV -->
-    <nav>
-      <div class="container">
-        <div class="nav-inner">
-          <a class="active" href="#inicio">INÍCIO</a>
-          <a href="#paroquo">NOSSO PÁROCO</a>
-          <a href="#pastorais">PASTORAIS</a>
-          <a href="#comunidades">COMUNIDADES</a>
-          <a href="#avisos">AVISOS</a>
-          <a href="#galerias">GALERIAS</a>
-          <a href="#espiritualidade">ESPIRITUALIDADE</a>
-          <a href="#doacoes">DOAÇÕES E DÍZIMO</a>
-          <a href="#contato">CONTATO</a>
-        </div>
-      </div>
-    </nav>
-
-    <!-- HERO -->
-    <section class="hero" id="inicio">
-      <div class="container">
-        <div class="hero-banner">
-          <div class="hero-content">
-            <div>
-              <div class="pill">📌 Aviso rápido</div>
-              <h2>Bem-vindo(a) ao site da Paróquia Rainha da Paz</h2>
-              <p>
-                Aqui você encontra horários, avisos, agenda, pastorais,
-                comunidades, galerias e conteúdos de espiritualidade. (Troque
-                este texto pelo recado do pároco ou pelo destaque da semana.)
-              </p>
-            </div>
-            <div class="hero-actions">
-              <a class="btn" href="#agenda">Ver agenda</a>
-              <a class="btn" href="#avisos">Avisos da semana</a>
-              <a class="btn btn-solid" href="#doacoes">Contribuir</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- MAIN -->
-    <main>
-      <div class="container">
-        <div class="layout">
-          <!-- LEFT COLUMN -->
           <div>
-            <!-- FEATURED -->
-            <div class="section-title">Destaque</div>
-            <article class="card featured">
-              <div class="img" aria-label="Imagem de destaque"></div>
-              <div class="txt">
-                <div class="pill">🗓️ 12 de fevereiro</div>
-                <h3>Semana Missionária e programação especial</h3>
-                <p>
-                  Coloque aqui o texto do destaque: uma chamada curta para o
-                  evento principal (tríduo, retiro, formação, campanha do
-                  dízimo, etc.).
-                </p>
-                <div class="meta">
-                  <span class="pill">⏰ 19h</span>
-                  <span class="pill">📍 Matriz</span>
-                  <span class="pill">📣 Leia mais</span>
-                </div>
-              </div>
-            </article>
-
-            <!-- NEWS -->
-            <div class="section-title" id="avisos">Notícias e Avisos</div>
-
-            <div class="news-columns">
-              <section class="card">
-                <div class="pad">
-                  <div class="section-title" style="margin-top: 0">
-                    Notícias da Paróquia
-                  </div>
-
-                  <a class="news-item" href="#">
-                    <div class="thumb">
-                      <img
-                        alt="thumb"
-                        src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=60"
-                      />
-                    </div>
-                    <div>
-                      <div class="date">16 de janeiro</div>
-                      <h4>Santa Missa e bênção do ano letivo</h4>
-                      <div
-                        class="muted"
-                        style="font-size: 12px; margin-top: 4px"
-                      >
-                        Chamada curta do aviso… (edite aqui)
-                      </div>
-                    </div>
-                  </a>
-
-                  <a class="news-item" href="#">
-                    <div class="thumb">
-                      <img
-                        alt="thumb"
-                        src="https://images.unsplash.com/photo-1520975958225-47bfcfd7c3b9?auto=format&fit=crop&w=800&q=60"
-                      />
-                    </div>
-                    <div>
-                      <div class="date">11 de fevereiro</div>
-                      <h4>Inscrições abertas: Catequese 2026</h4>
-                      <div
-                        class="muted"
-                        style="font-size: 12px; margin-top: 4px"
-                      >
-                        Documentos necessários, datas, horários…
-                      </div>
-                    </div>
-                  </a>
-
-                  <a class="news-item" href="#">
-                    <div class="thumb">
-                      <img
-                        alt="thumb"
-                        src="https://images.unsplash.com/photo-1523800503107-5bc3ba2a6f81?auto=format&fit=crop&w=800&q=60"
-                      />
-                    </div>
-                    <div>
-                      <div class="date">08 de fevereiro</div>
-                      <h4>Plantão da confissão e adoração</h4>
-                      <div
-                        class="muted"
-                        style="font-size: 12px; margin-top: 4px"
-                      >
-                        Dias e horários da semana…
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </section>
-
-              <section class="card">
-                <div class="pad">
-                  <div class="section-title" style="margin-top: 0">
-                    Notícias da Igreja
-                  </div>
-
-                  <a class="news-item" href="#">
-                    <div class="thumb">
-                      <img
-                        alt="thumb"
-                        src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=60"
-                      />
-                    </div>
-                    <div>
-                      <div class="date">23 de abril</div>
-                      <h4>Mensagem e intenção do Papa (mês atual)</h4>
-                      <div
-                        class="muted"
-                        style="font-size: 12px; margin-top: 4px"
-                      >
-                        Resumo curto com link…
-                      </div>
-                    </div>
-                  </a>
-
-                  <a class="news-item" href="#">
-                    <div class="thumb">
-                      <img
-                        alt="thumb"
-                        src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=60"
-                      />
-                    </div>
-                    <div>
-                      <div class="date">02 de maio</div>
-                      <h4>CNBB: campanha e comunicado</h4>
-                      <div
-                        class="muted"
-                        style="font-size: 12px; margin-top: 4px"
-                      >
-                        Coloque algo oficial com link…
-                      </div>
-                    </div>
-                  </a>
-
-                  <a class="news-item" href="#">
-                    <div class="thumb">
-                      <img
-                        alt="thumb"
-                        src="https://images.unsplash.com/photo-1530036846422-afb4b7af2fd4?auto=format&fit=crop&w=800&q=60"
-                      />
-                    </div>
-                    <div>
-                      <div class="date">11 de julho</div>
-                      <h4>Formação: encontro regional</h4>
-                      <div
-                        class="muted"
-                        style="font-size: 12px; margin-top: 4px"
-                      >
-                        Local, data e orientações…
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </section>
-            </div>
-
-            <!-- ESPIRITUALIDADE -->
-            <section class="spirit" id="espiritualidade">
-              <div class="section-title" style="margin-top: 0">
-                Espiritualidade
-              </div>
-              <div class="muted" style="font-weight: 700">
-                Acesso rápido para conteúdos do dia e pedidos de oração.
-              </div>
-
-              <div class="spirit-grid">
-                <a class="icon-card" href="leitura-diaria.html">
-                  <div class="circle">📖</div>
-                  <h5>LITURGIA DIÁRIA</h5>
-                  <p>Leituras e salmo</p>
-                </a>
-                
-                <a class="icon-card" href="aprenda-rezar-terço.html">
-                  <div class="circle">📿</div>
-                  <h5>TERÇO ONLINE</h5>
-                  <p>Aprenda a Rezar Terço</p>
-                </a>
-                <a class="icon-card" href="#">
-                  <div class="circle">🙏</div>
-                  <h5>ORAÇÕES</h5>
-                  <p>Novenas e roteiros</p>
-                </a>
-                <a class="icon-card" href="#">
-                  <div class="circle">✉️</div>
-                  <h5>PEDIDO DE ORAÇÃO</h5>
-                  <p>Envie sua intenção</p>
-                </a>
-              </div>
-            </section>
-
-            <!-- AGENDA -->
-            <section class="agenda" id="agenda">
-              <div class="pad" style="padding: 16px 16px 0">
-                <div class="section-title" style="margin-top: 0">
-                  Agenda da Semana
-                </div>
-                <div class="muted" style="font-weight: 700">
-                  Clique no dia para visualizar os compromissos:
-                </div>
-              </div>
-
-              <div class="agenda-top">
-                <div
-                  class="weekdays"
-                  role="tablist"
-                  aria-label="Dias da semana"
-                >
-                  <button class="active" data-day="domingo">DOMINGO</button>
-                  <button data-day="segunda">SEGUNDA-FEIRA</button>
-                  <button data-day="terca">TERÇA-FEIRA</button>
-                  <button data-day="quarta">QUARTA-FEIRA</button>
-                  <button data-day="quinta">QUINTA-FEIRA</button>
-                  <button data-day="sexta">SEXTA-FEIRA</button>
-                  <button data-day="sabado">SÁBADO</button>
-                </div>
-
-                <div class="agenda-panel" id="agendaPanel">
-                  <!-- preenchido via JS -->
-                </div>
-              </div>
-
-              <div class="agenda-footer">
-                <a href="#">📅 Agenda completa &raquo;</a>
-              </div>
-            </section>
-
-            <!-- PASTORAIS / COMUNIDADES / GALERIAS / DOAÇÕES -->
-            <section id="pastorais" style="margin-top: 22px">
-              <div class="section-title">Pastorais e Movimentos</div>
-              <div class="grid" style="grid-template-columns: repeat(3, 1fr)">
-                <div class="card">
-                  <div class="pad">
-                    <h3 style="margin: 0 0 6px">Pastoral da Comunicação</h3>
-                    <div class="muted" style="font-weight: 700">
-                      Missão + dia/horário + responsável
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="pad">
-                    <h3 style="margin: 0 0 6px">Catequese</h3>
-                    <div class="muted" style="font-weight: 700">
-                      Turmas, inscrições e contatos
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="pad">
-                    <h3 style="margin: 0 0 6px">Liturgia</h3>
-                    <div class="muted" style="font-weight: 700">
-                      Escalas, formação e celebrações
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="muted" style="margin-top: 10px; font-weight: 700">
-                (Você pode transformar isso em uma página “pastorais.html”
-                depois.)
-              </div>
-            </section>
-
-            <section id="comunidades" style="margin-top: 22px">
-              <div class="section-title">Comunidades</div>
-              <div class="card">
-                <div class="pad">
-                  <div class="muted" style="font-weight: 700">
-                  
-                  </div>
-                  <ul style="margin: 12px 0 0; padding-left: 18px">
-                    <li><b>Matriz Nossa Senhora Rainha da Paz</b> — Rua 77, Qd. 520, Lt. B, Bairro Nova Carajás </li>
-                    <li>
-                      <b>Comunidade Sagrado Coração de Jesus</b> — Residencial Minha Casa, Minhq vida, Setor C-20, Bairro Nova Carajás 
-                    </li>
-                    <li><b>Comunidade São Miguel Arcanjo</b> — Rua Serra Sul, Qd. 616, Lt. 05, Bairro Nova Carajás </li>
-                    <li><b>Comunidade Nossa Senhora do Rosário</b> — Rua A09, Qd. 17, Lt. 04, Bairro Amazônia </li>
-                    <li><b>Comunidade Nossa Senhora de Fátima</b> — Rua Central, n° 300, Bairro Novo Brasil </li>
-                    <li><b>Comunidade Santíssima Trindade</b> — Avenida Sossego, Qd. 415, Lt. 01, Bairro Nova Carajás </li>
-                    <li><b>Comunidade São Francisco de Assis</b> — Rua das Palmeiras, Qd. 04, Bairro Nova Carajás </li>
-                    <li><b>Comunidade Nossa Senhora Aparecida</b> - Bairro Cedere I - Zona Rural</li>
-                    <li><b>Comunidade Sagrado Coração de Jesus</b> - Qd. 01, Lt. 04, Vila Nova Esperança - Zona Rural</li>
-                    <li><b>Comunidade São José</b> Av. Principal, Vila Onalício Barros - Zona Rural</li>
-                    <li><b>Comunidade São Pedro</b>Estrada Vicinal 17, Lt. 35,  Assentamento Santo Antômio - Zona Rural</li>
-                  </ul>
-                </div>
-              </div>
-            </section>
-
-            <section id="galerias" style="margin-top: 22px">
-              <div class="section-title">Galerias</div>
-              <div class="grid" style="grid-template-columns: repeat(3, 1fr)">
-                <a class="card" href="#"
-                  ><div class="pad">
-                    <div class="pill">📷 Álbum</div>
-                    <h3 style="margin: 10px 0 6px">Festa da Padroeira</h3>
-                    <div class="muted" style="font-weight: 700">
-                      Fotos e momentos
-                    </div>
-                  </div></a
-                >
-                <a class="card" href="#"
-                  ><div class="pad">
-                    <div class="pill">📷 Álbum</div>
-                    <h3 style="margin: 10px 0 6px">Crisma</h3>
-                    <div class="muted" style="font-weight: 700">Celebração</div>
-                  </div></a
-                >
-                <a class="card" href="#"
-                  ><div class="pad">
-                    <div class="pill">📷 Álbum</div>
-                    <h3 style="margin: 10px 0 6px">Corpus Christi</h3>
-                    <div class="muted" style="font-weight: 700">
-                      Procissão e tapetes
-                    </div>
-                  </div></a
-                >
-              </div>
-            </section>
-
-            <section id="doacoes" style="margin-top: 22px">
-              <div class="section-title">Doações e Dízimo</div>
-              <div class="card">
-                <div class="pad">
-                  <div
-                    class="grid"
-                    style="grid-template-columns: 1.2fr 0.8fr; gap: 16px"
-                  >
-                    <div>
-                      <h3 style="margin: 0 0 8px">Ajude a manter a missão</h3>
-                      <p
-                        class="muted"
-                        style="margin: 0; font-weight: 700; line-height: 1.5"
-                      >
-                        O seu dízimo ajuda nas missões da Igreja!
-                      </p>
-                      <div
-                        style="
-                          margin-top: 12px;
-                          display: flex;
-                          gap: 10px;
-                          flex-wrap: wrap;
-                        "
-                      >
-                        <a class="btn btn-solid" href="#">Contribuir via PIX</a>
-                        <a
-                          class="btn"
-                          style="
-                            border-color: var(--line);
-                            color: var(--text);
-                            background: #fff;
-                          "
-                          href="#"
-                        >
-                          Como dizimar?
-                        </a>
-                      </div>
-                    </div>
-                    <div class="card" style="box-shadow: none">
-                      <div class="pad">
-                        <div class="pill">💠 PIX</div>
-                        <h3 style="margin: 10px 0 6px">Chave PIX</h3>
-                        <div
-                          class="muted"
-                          style="font-weight: 900; font-size: 14px"
-                        >
-                          04.882.130/0034-14
-                        </div>
-                        <div
-                          class="muted"
-                          style="margin-top: 8px; font-weight: 700"
-                        >
-                          <img src="https://i.postimg.cc/pTY5Y6FC/image.png" alt="PIX">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-
-          <!-- RIGHT COLUMN (SIDEBAR) -->
-          <aside>
-            <div class="card profile" id="paroquo">
-              <div
-                class="section-title"
-                style="justify-content: center; margin: 0 0 12px"
-              >
-                Palavra do Pároco
-              </div>
-              <div class="avatar">
-                <img
-                  alt="Foto do pároco"
-                  src="https://i.postimg.cc/4dgDg2LZ/image.png"
-                />
-              </div>
-              <h3 style="margin: 0">Pe. Jeferson</h3>
-              <p class="muted" style="font-weight: 700">
-                Mensagem breve / convite da semana.
-              </p>
-              <a class="btn btn-solid" href="#">Ler mensagem completa</a>
-            </div>
-
-            <div style="height: 14px"></div>
-
-            <div class="card">
-              <div class="pad">
-                <div class="section-title" style="margin-top: 0">
-                  Acessos rápidos
-                </div>
-                <div class="widget-list">
-                  <a class="widget-link" href="#contato">
-                    Contato e Secretaria <span>→</span>
-                  </a>
-                  <a class="widget-link" href="#doacoes">
-                    Dízimo / Doações <span>→</span>
-                  </a>
-                  <a class="widget-link" href="#galerias">
-                    Últimas galerias <span>→</span>
-                  </a>
-                  <a class="widget-link" href="#pastorais">
-                    Pastorais e movimentos <span>→</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div style="height: 14px"></div>
-
-            <div class="card" id="contato">
-              <div class="pad">
-                <div class="section-title" style="margin-top: 0">Contato</div>
-                <p
-                  class="muted"
-                  style="margin: 0; font-weight: 700; line-height: 1.5"
-                >
-                  <b>Endereço:</b> Rua 77, Qd. 520, Lote B, Bairro Nova Carajás
-                  — Parauapebas/PA<br />
-                  <b>Secretaria:</b> Seg–Sex 14h - 18h / Sábado 08h - 12h<br />
-                  <b>WhatsApp:</b> (94) 98450-9985<br />
-                  <b>E-mail:</b> suporterainhadapaz@protonmail.com.br
-                </p>
-
-                <form
-                  style="margin-top: 12px"
-                  onsubmit="return sendContact(event)"
-                >
-                  <div
-                    class="grid"
-                    style="grid-template-columns: 1fr; gap: 10px"
-                  >
-                    <input
-                      required
-                      placeholder="Seu nome"
-                      style="
-                        padding: 12px 14px;
-                        border-radius: 14px;
-                        border: 1px solid var(--line);
-                        font-weight: 700;
-                      "
-                    />
-                    <input
-                      required
-                      type="email"
-                      placeholder="Seu e-mail"
-                      style="
-                        padding: 12px 14px;
-                        border-radius: 14px;
-                        border: 1px solid var(--line);
-                        font-weight: 700;
-                      "
-                    />
-                    <textarea
-                      required
-                      placeholder="Mensagem"
-                      rows="4"
-                      style="
-                        padding: 12px 14px;
-                        border-radius: 14px;
-                        border: 1px solid var(--line);
-                        font-weight: 700;
-                        resize: vertical;
-                      "
-                    ></textarea>
-                    <button
-                      class="btn btn-solid"
-                      style="
-                        width: 100%;
-                        border-radius: 14px;
-                        padding: 12px 14px;
-                        cursor: pointer;
-                      "
-                      type="submit"
-                    >
-                      Enviar mensagem
-                    </button>
-                  </div>
-                  <div
-                    class="muted"
-                    style="margin-top: 8px; font-weight: 700; font-size: 12px"
-                  >
-                    * Este formulário é demonstrativo (sem backend). Depois
-                    ligamos a um e-mail/serviço.
-                  </div>
-                </form>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-      <div class="container">
-        <div class="footer-grid">
-          <div>
-            <h4>Paróquia Rainha da Paz</h4>
+            <h1>Paróquia Rainha da Paz</h1>
             <p>Parauapebas — PA</p>
-            <p style="margin-top: 8px; opacity: 0.9">
-              “Servir com alegria, comunicar com amor.”
-            </p>
-          </div>
-          <div>
-            <h4>Menu</h4>
-            <div class="grid" style="gap: 8px">
-              <a href="#avisos">Avisos</a>
-              <a href="#agenda">Agenda</a>
-              <a href="#pastorais">Pastorais</a>
-              <a href="#comunidades">Comunidades</a>
-              <a href="#galerias">Galerias</a>
-            </div>
-          </div>
-          <div>
-            <h4>Contato</h4>
-            <div class="grid" style="gap: 8px">
-              <a href="#contato">Secretaria</a>
-              <a href="#doacoes">Dízimo / Doações</a>
-              <a href="#">Instagram</a>
-              <a href="#">YouTube</a>
-            </div>
           </div>
         </div>
-
-        <div class="footnote">
-          <div>
-            © <span id="yearNow"></span> Paróquia Rainha da Paz — PASCOM
-          </div>
-          <div>Feito com ♥ para a evangelização</div>
+        <div class="search-area">
+          <form class="search-form" onsubmit="return fakeSearch(event)">
+            <input type="search" placeholder="Buscar..." aria-label="Buscar">
+            <button>🔍</button>
+          </form>
+          <a href="#doacoes" class="btn-dizimo">Dízimo</a>
         </div>
       </div>
-    </footer>
+    </div>
+  </header>
 
-    <script>
-      // Data no topo
-      (function () {
-        const now = new Date();
-        const months = [
-          "janeiro",
-          "fevereiro",
-          "março",
-          "abril",
-          "maio",
-          "junho",
-          "julho",
-          "agosto",
-          "setembro",
-          "outubro",
-          "novembro",
-          "dezembro",
-        ];
-        const txt = `Parauapebas, ${String(now.getDate()).padStart(
-          2,
-          "0"
-        )} de ${months[now.getMonth()]} de ${now.getFullYear()}`;
-        document.getElementById("todayText").textContent = txt;
-        document.getElementById("yearNow").textContent = now.getFullYear();
-      })();
+  <!-- Navegação -->
+  <nav>
+    <div class="nav-inner">
+      <a class="active" href="#inicio">Início</a>
+      <a href="#paroquo">Pároco</a>
+      <a href="#pastorais">Pastorais</a>
+      <a href="#comunidades">Comunidades</a>
+      <a href="#avisos">Avisos</a>
+      <a href="#espiritualidade">Espiritualidade</a>
+      <a href="#doacoes">Doações</a>
+      <a href="#contato">Contato</a>
+    </div>
+  </nav>
 
-      // Busca fake (depois você liga num sistema real)
-      function fakeSearch(e) {
-        e.preventDefault();
-        alert(
-          "Busca ainda não configurada. Depois conectamos a um sistema de posts/notícias :)"
-        );
-        return false;
-      }
-
-      // Contato fake
-      function sendContact(e) {
-        e.preventDefault();
-        alert(
-          "Mensagem enviada (modo demonstração). Depois ligamos ao e-mail da secretaria."
-        );
-        e.target.reset();
-        return false;
-      }
-
-      // Agenda (modelo)
-      const agendaData = {
-        domingo: [
-          { time: "07:00", title: "Santa Missa", place: "Igreja Matriz" },
-            { time: "09:00", title: "Santa Missa", place: "Comunidade Nossa Senhora do Rosário" },
-            { time: "11:00", title: "Santa Missa", place: "Comunidade Sagrado Coração de Jesus"},
-          { time: "18:00", title: "Santa Missa", place: "Igreja Matriz" },
-          { time: "19:30", title: "Santa Missa", place: "Comunidade São Miguel Arcanjo"}
-        ],
-        segunda: [
-          { time: "19:00", title: "Grupo de Oração", place: "Salão Paroquial" },
-        ],
-        terca: [
-          { time: "08:30 às 12:00", title: "Confissão", place: "Secretaria da Matriz"},
-           { time: "19:30", title: "Santa Missa", place: "Comunidade São Miguel Arcanjo"
-          },
-          
-        ],
-        quarta: [
-          { time: "17:00 às 19:00", title: "Confissão", place: "Igreja Matriz" },
-          { time: "19:30", title: "Santa Missa", place: "Igreja Matriz" },
-        ],
-        quinta: [
-             { time: "08:30 às 12:00", title: "Confissão", place: "Secretaria da Matriz"},
-              { time: "14:30 às 18:00", title: "Confissão", place: "Secretaria da Matriz"},
-          { time: "19:30", title: "Santa Missa", place: "Comunidade Nossa Senhora do Rosário" },
-        ],
-        sexta: [
-          { time: "08:30 às 12:00", title: "Confissão", place: "Secretaria da Matriz"},
-        ],
-        sabado: [
-            { time: "10:30 às 12:00", title: "Confissão", place: "Secretaria da Matriz"},
-            { time: "18:00", title: "Santa Missa", place: "Comunidade Santíssima Trindade"},
-            { time: "19:30", title: "Santa Missa", place: "Comunidade Nossa Senhora de Fátima"},
-        ],
-      };
-
-      const panel = document.getElementById("agendaPanel");
-      const buttons = document.querySelectorAll(".weekdays button");
-
-      function renderAgenda(dayKey) {
-        const labels = {
-          domingo: "Domingo",
-          segunda: "Segunda-feira",
-          terca: "Terça-feira",
-          quarta: "Quarta-feira",
-          quinta: "Quinta-feira",
-          sexta: "Sexta-feira",
-          sabado: "Sábado",
-        };
-
-        const items = agendaData[dayKey] || [];
-        panel.innerHTML = `
-        <h4>${labels[dayKey]}</h4>
-        ${
-          items.length
-            ? items
-                .map(
-                  (i) => `
-          <div class="agenda-item">
-            <div class="time">${i.time} — ${i.title}</div>
-            <div class="place">${i.place}</div>
+  <main>
+    <div class="container">
+      <!-- Hero -->
+      <section class="hero" id="inicio">
+        <div class="hero-banner">
+          <div class="pill" style="display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 30px; font-size: 12px;">📌 Aviso da semana</div>
+          <h2>Bem-vindo à nossa comunidade</h2>
+          <p>Horários de missas, avisos, pastorais e conteúdos de espiritualidade. Participe conosco!</p>
+          <div class="hero-actions">
+            <a href="#agenda" class="btn btn-outline">Ver agenda</a>
+            <a href="#doacoes" class="btn btn-primary">Contribuir</a>
           </div>
-        `
-                )
-                .join("")
-            : `<div class="muted" style="font-weight:800;">Sem eventos cadastrados para este dia.</div>`
-        }
-      `;
+        </div>
+      </section>
+
+      <div class="layout">
+        <!-- Coluna principal -->
+        <div>
+          <!-- Destaque -->
+          <div class="section-title">Destaque</div>
+          <div class="card featured">
+            <div class="featured-img"></div>
+            <div class="card-pad">
+              <span class="pill" style="background: var(--accent-light); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-size: 11px;">🗓️ Março 2026</span>
+              <h3 style="margin: 12px 0 8px;">Campanha da Fraternidade</h3>
+              <p class="text-muted">Participe das celebrações e ações solidárias. Confira a programação especial.</p>
+              <div class="mt-2"><span class="text-muted">📍 Matriz • 19h30</span></div>
+            </div>
+          </div>
+
+          <!-- Notícias -->
+          <div class="section-title" id="avisos">Notícias e Avisos</div>
+          <div class="news-columns">
+            <div class="news-list">
+              <div class="news-item">
+                <div class="news-thumb"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=200&q=60" alt="missa"></div>
+                <div class="news-content">
+                  <div class="news-date">16 de janeiro</div>
+                  <div class="news-title">Santa Missa e bênção do ano letivo</div>
+                </div>
+              </div>
+              <div class="news-item">
+                <div class="news-thumb"><img src="https://images.unsplash.com/photo-1520975958225-47bfcfd7c3b9?auto=format&fit=crop&w=200&q=60" alt="catequese"></div>
+                <div class="news-content">
+                  <div class="news-date">11 de fevereiro</div>
+                  <div class="news-title">Inscrições abertas: Catequese 2026</div>
+                </div>
+              </div>
+            </div>
+            <div class="news-list">
+              <div class="news-item">
+                <div class="news-thumb"><img src="https://images.unsplash.com/photo-1523800503107-5bc3ba2a6f81?auto=format&fit=crop&w=200&q=60" alt="adoração"></div>
+                <div class="news-content">
+                  <div class="news-date">08 de fevereiro</div>
+                  <div class="news-title">Plantão da confissão e adoração</div>
+                </div>
+              </div>
+              <div class="news-item">
+                <div class="news-thumb"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=200&q=60" alt="papa"></div>
+                <div class="news-content">
+                  <div class="news-date">Mensagem do Papa</div>
+                  <div class="news-title">Intenção de oração para o mês</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Espiritualidade -->
+          <section id="espiritualidade">
+            <div class="section-title">Espiritualidade</div>
+            <div class="spirit-grid">
+              <a class="spirit-card"><div class="spirit-icon">📖</div><h5>Liturgia Diária</h5></a>
+              <a class="spirit-card"><div class="spirit-icon">📿</div><h5>Terço Online</h5></a>
+              <a class="spirit-card"><div class="spirit-icon">🙏</div><h5>Orações</h5></a>
+              <a class="spirit-card"><div class="spirit-icon">✉️</div><h5>Pedido de Oração</h5></a>
+            </div>
+          </section>
+
+          <!-- Agenda -->
+          <section id="agenda">
+            <div class="section-title">Agenda da Semana</div>
+            <div class="agenda">
+              <div class="weekdays-scroll" id="weekdaysScroll">
+                <button class="day-btn active" data-day="domingo">DOM</button>
+                <button class="day-btn" data-day="segunda">SEG</button>
+                <button class="day-btn" data-day="terca">TER</button>
+                <button class="day-btn" data-day="quarta">QUA</button>
+                <button class="day-btn" data-day="quinta">QUI</button>
+                <button class="day-btn" data-day="sexta">SEX</button>
+                <button class="day-btn" data-day="sabado">SÁB</button>
+              </div>
+              <div class="agenda-panel" id="agendaPanel"></div>
+            </div>
+          </section>
+
+          <!-- Pastorais -->
+          <div class="section-title" id="pastorais">Pastorais</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="card"><div class="card-pad"><strong>Pastoral da Comunicação</strong><div class="text-muted mt-2">Encontros quinzenais</div></div></div>
+            <div class="card"><div class="card-pad"><strong>Catequese</strong><div class="text-muted mt-2">Infantil e adultos</div></div></div>
+            <div class="card"><div class="card-pad"><strong>Liturgia</strong><div class="text-muted mt-2">Formação para ministros</div></div></div>
+            <div class="card"><div class="card-pad"><strong>Pastoral Familiar</strong><div class="text-muted mt-2">Encontros mensais</div></div></div>
+          </div>
+
+          <!-- Comunidades -->
+          <div class="section-title" id="comunidades">Comunidades</div>
+          <div class="card">
+            <div class="card-pad">
+              <ul class="comunidades-list">
+                <li><strong>Matriz Rainha da Paz</strong> — Nova Carajás</li>
+                <li><strong>Sagrado Coração de Jesus</strong> — Res. Minha Casa Minha Vida</li>
+                <li><strong>São Miguel Arcanjo</strong> — Nova Carajás</li>
+                <li><strong>Nossa Senhora do Rosário</strong> — Bairro Amazônia</li>
+                <li><strong>Nossa Senhora de Fátima</strong> — Novo Brasil</li>
+                <li><strong>Santíssima Trindade</strong> — Nova Carajás</li>
+                <li><strong>São Francisco de Assis</strong> — Nova Carajás</li>
+                <li class="text-muted">+ Comunidades rurais: Cedere I, Vila Nova Esperança, São José, São Pedro</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Doações -->
+          <div class="section-title" id="doacoes">Doações e Dízimo</div>
+          <div class="card">
+            <div class="card-pad">
+              <div class="donation-box">
+                <div>
+                  <h3 style="margin-bottom: 8px;">Ajude a manter a missão</h3>
+                  <p class="text-muted">Seu dízimo transforma vidas e sustenta nossas atividades</p>
+                  <a href="#" class="btn btn-primary" style="display: inline-block; margin-top: 12px;">Contribuir via PIX</a>
+                </div>
+                <div class="pix-code">
+                  <div style="font-size: 12px; font-weight: 600;">Chave PIX (CNPJ)</div>
+                  <div style="font-weight: 700; margin: 8px 0;">04.882.130/0034-14</div>
+                  <img src="https://i.postimg.cc/pTY5Y6FC/image.png" alt="QR Code PIX" style="width: 80px; margin-top: 8px;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside>
+          <div class="card profile-card" id="paroquo">
+            <div class="avatar">
+              <img src="https://i.postimg.cc/4dgDg2LZ/image.png" alt="Pe. Jeferson">
+            </div>
+            <h3>Pe. Jeferson</h3>
+            <p class="text-muted">“Vinde e vede a alegria do Senhor”</p>
+            <a href="#" class="btn btn-primary" style="margin-top: 12px; display: inline-block;">Ler mensagem completa</a>
+          </div>
+
+          <div class="card">
+            <div class="card-pad">
+              <div style="font-weight: 700; margin-bottom: 12px;">Acessos rápidos</div>
+              <a href="#contato" class="quick-link">Contato e Secretaria <span>→</span></a>
+              <a href="#doacoes" class="quick-link">Dízimo / Doações <span>→</span></a>
+              <a href="#galerias" class="quick-link">Galerias de fotos <span>→</span></a>
+            </div>
+          </div>
+
+          <div class="card" id="contato">
+            <div class="card-pad">
+              <div style="font-weight: 700; margin-bottom: 12px;">Contato</div>
+              <p class="text-muted"><strong>Endereço:</strong><br>Rua 77, Qd. 520, Lote B, Nova Carajás — Parauapebas/PA</p>
+              <p class="text-muted"><strong>Secretaria:</strong><br>Seg–Sex 14h-18h / Sáb 8h-12h</p>
+              <p class="text-muted"><strong>WhatsApp:</strong><br>(94) 98450-9985</p>
+              <p class="text-muted"><strong>E-mail:</strong><br>suporterainhadapaz@protonmail.com.br</p>
+              
+              <form class="contact-form" onsubmit="return sendContact(event)">
+                <input type="text" placeholder="Seu nome" required>
+                <input type="email" placeholder="Seu e-mail" required>
+                <textarea rows="3" placeholder="Sua mensagem" required></textarea>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar mensagem</button>
+              </form>
+              <div class="text-muted" style="font-size: 11px; margin-top: 8px;">*Formulário demonstrativo</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>Paróquia Rainha da Paz</h4>
+          <p style="opacity: 0.8; font-size: 13px;">Parauapebas — PA</p>
+          <p style="opacity: 0.7; font-size: 12px; margin-top: 8px;">“Servir com alegria, comunicar com amor.”</p>
+        </div>
+        <div class="footer-section">
+          <h4>Menu</h4>
+          <a href="#avisos">Avisos</a>
+          <a href="#agenda">Agenda</a>
+          <a href="#pastorais">Pastorais</a>
+          <a href="#comunidades">Comunidades</a>
+        </div>
+        <div class="footer-section">
+          <h4>Redes sociais</h4>
+          <a href="#">Instagram</a>
+          <a href="#">YouTube</a>
+          <a href="#">Facebook</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="yearNow"></span> Paróquia Rainha da Paz — PASCOM</span>
+        <span style="display: block; margin-top: 8px;">Feito com ♥ para a evangelização</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Data atual
+    (function() {
+      const now = new Date();
+      const meses = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+      document.getElementById('todayText').innerHTML = `Parauapebas, ${now.getDate()} de ${meses[now.getMonth()]} de ${now.getFullYear()}`;
+      document.getElementById('yearNow').innerHTML = now.getFullYear();
+    })();
+
+    // Busca fake
+    function fakeSearch(e) {
+      e.preventDefault();
+      alert('Busca em desenvolvimento. Utilize o menu de navegação.');
+      return false;
+    }
+
+    // Contato fake
+    function sendContact(e) {
+      e.preventDefault();
+      alert('Mensagem enviada com sucesso! (modo demonstração)');
+      e.target.reset();
+      return false;
+    }
+
+    // Dados da agenda
+    const agendaData = {
+      domingo: [{time:"07:00", title:"Santa Missa", place:"Matriz"},{time:"09:00", title:"Missa", place:"Comunidade Rosário"},{time:"18:00", title:"Santa Missa", place:"Matriz"}],
+      segunda: [{time:"19:00", title:"Grupo de Oração", place:"Salão Paroquial"}],
+      terca: [{time:"08:30", title:"Confissões", place:"Secretaria"},{time:"19:30", title:"Missa", place:"São Miguel Arcanjo"}],
+      quarta: [{time:"17:00", title:"Confissão", place:"Matriz"},{time:"19:30", title:"Santa Missa", place:"Matriz"}],
+      quinta: [{time:"08:30", title:"Confissões", place:"Secretaria"},{time:"19:30", title:"Missa", place:"N.Sra. Rosário"}],
+      sexta: [{time:"08:30", title:"Confissão", place:"Secretaria"}],
+      sabado: [{time:"10:30", title:"Confissão", place:"Matriz"},{time:"18:00", title:"Missa", place:"Santíssima Trindade"},{time:"19:30", title:"Missa", place:"N.Sra. Fátima"}]
+    };
+
+    const labels = { domingo:"Domingo", segunda:"Segunda", terca:"Terça", quarta:"Quarta", quinta:"Quinta", sexta:"Sexta", sabado:"Sábado" };
+
+    function renderAgenda(day) {
+      const items = agendaData[day] || [];
+      const panel = document.getElementById('agendaPanel');
+      if (items.length === 0) {
+        panel.innerHTML = '<div class="text-muted" style="text-align: center; padding: 20px;">Nenhum evento cadastrado para este dia.</div>';
+        return;
       }
+      panel.innerHTML = items.map(item => `
+        <div class="agenda-item">
+          <div class="agenda-time">${item.time}</div>
+          <div class="agenda-title">${item.title}</div>
+          <div class="agenda-place">📍 ${item.place}</div>
+        </div>
+      `).join('');
+    }
 
-      buttons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          buttons.forEach((b) => b.classList.remove("active"));
-          btn.classList.add("active");
-          renderAgenda(btn.dataset.day);
-        });
+    // Eventos dos botões da agenda
+    document.querySelectorAll('.day-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderAgenda(btn.dataset.day);
       });
+    });
 
-      // Inicial
-      renderAgenda("domingo");
-    </script>
-  </body>
+    // Inicializa agenda
+    renderAgenda('domingo');
+  </script>
+</body>
 </html>
