@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes, viewport-fit=cover" />
+  <title>Catequese | Paróquia Rainha da Paz</title>
+  <meta name="description" content="Pastoral da Catequese da Paróquia Rainha da Paz em Parauapebas. Formação cristã e iniciação à vida cristã para crianças, jovens e adultos." />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #ffffff;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      --brand: #0f3a79;
+      --brand-dark: #0b2a57;
+      --accent: #d11b2c;
+      --accent-light: #fee2e2;
+      --soft: #f8fafc;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      --radius: 1rem;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #eef2f6 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    .topbar {
+      background: var(--brand-dark);
+      color: white;
+      font-size: 12px;
+      padding: 8px 0;
+      text-align: center;
+    }
+
+    .topbar .inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 50px;
+    }
+
+    .topbar a {
+      color: white;
+      text-decoration: none;
+      opacity: 0.9;
+      transition: opacity 0.2s;
+    }
+
+    .topbar a:hover {
+      opacity: 1;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 40px 0;
+      box-shadow: var(--shadow);
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      width: 108px;
+      height: 48px;
+      border-radius: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .brand h1 {
+      font-size: 1.2rem;
+      line-height: 1.3;
+    }
+
+    .brand p {
+      font-size: 0.75rem;
+      opacity: 0.9;
+    }
+
+    .btn-voltar {
+      background: rgba(255,255,255,0.2);
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-voltar:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateX(-4px);
+    }
+
+    /* Hero da página */
+    .page-hero {
+      background: linear-gradient(135deg, #22c55e, #15803d); /* Verde para representar esperança/catequese */
+      border-radius: 24px;
+      padding: 48px 32px;
+      margin: 32px 0;
+      text-align: center;
+      color: white;
+    }
+
+    .page-hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+
+    /* Cards principais */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid var(--border);
+    }
+
+    .card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      color: var(--brand);
+    }
+
+    /* Seção de missão */
+    .mission-section {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      border-radius: 24px;
+      padding: 48px;
+      margin-bottom: 48px;
+      color: white;
+      text-align: center;
+    }
+
+    /* Equipe */
+    .team-section {
+      background: white;
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 48px;
+      border: 1px solid var(--border);
+    }
+
+    .member-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #22c55e, #15803d);
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+    }
+
+    /* Participar */
+    .join-section {
+      background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
+      border-radius: 24px;
+      padding: 48px;
+      margin-bottom: 48px;
+      color: white;
+      text-align: center;
+    }
+
+    .join-btn {
+      background: white;
+      color: #2563eb;
+      border: none;
+      padding: 14px 40px;
+      border-radius: 40px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+
+        /* Footer */
+    footer {
+      background: var(--brand-dark);
+      color: white;
+      margin-top: 60px;
+      padding: 48px 0 24px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+
+    .footer-section h4 {
+      margin-bottom: 16px;
+      font-size: 1.1rem;
+    }
+
+    .footer-section p, .footer-section a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .footer-section a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      font-size: 12px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #2563eb;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 12px;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 768px) {
+      .page-hero h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container">
+      <div class="inner">
+        <div>
+
+        </div>
+        <div><a href="index.html">← Voltar ao site principal</a></div>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <div class="brand">
+          <div class="logo">
+            <img src="https://i.postimg.cc/XvbNcTWH/Design-sem-nome-1-removebg-preview.png" alt="Logo">
+          </div>
+          <div>
+            <h1>Paróquia Rainha da Paz</h1>
+            <p>Parauapebas — PA</p>
+          </div>
+        </div>
+        <a href="index.html" class="btn-voltar">← Início</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="page-hero">
+        <h1>CATEQUESE</h1>
+        <p>Iniciação à Vida Cristã: Formando discípulos missionários de Jesus Cristo através da Palavra e da Eucaristia.</p>
+        <div style="margin-top: 24px;">
+          <a href="https://drive.google.com/file/d/1RRuyzNMhlz3XRCwWNubRZx_ZKsQllmfs/view?usp=drive_link" class="btn-outline" style="margin-right: 12px;">Calendário</a>
+          <a href="#participar" class="btn-primary" style="background-color: white; color: #15803d;">Inscrições 2026</a>
+        </div>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div style="font-size: 3rem; margin-bottom: 20px;">🕊️</div>
+          <h2>O que é a Catequese?</h2>
+          <p>É o processo de educação da fé, que vai além do ensino intelectual. É um encontro pessoal com Jesus Cristo, vivenciado na comunidade, preparando para os sacramentos e para a vida cristã adulta.</p>
+        </div>
+
+        <div id="etapas" class="card">
+          <div style="font-size: 3rem; margin-bottom: 20px;">📜</div>
+          <h2>Nossas Etapas</h2>
+          <p>🌱 <b>Pré-Catequese:</b> O despertar da fé.<br>
+             💧 <b>Eucaristia:</b> O encontro com o Pão da Vida.<br>
+             🔥 <b>Crisma:</b> A confirmação no Espírito Santo.<br>
+             📖 <b>Catequese de Adultos:</b> Iniciação tardia.</p>
+        </div>
+
+        <div class="card">
+          <div style="font-size: 3rem; margin-bottom: 20px;">🏠</div>
+          <h2>Família e Fé</h2>
+          <p>A família é a "Igreja Doméstica". Nossa catequese trabalha em conjunto com os pais, pois é no lar que o exemplo cristão cria raízes profundas para o resto da vida.</p>
+        </div>
+      </div>
+
+      <div class="mission-section">
+        <h2>"Deixai vir a mim as criancinhas" (Mc 10,14)</h2>
+        <p>A Pastoral da Catequese tem como objetivo ecoar a Palavra de Deus. Mais do que preparar para um dia de festa (sacramento), preparamos cristãos conscientes para a missão de transformar o mundo.</p>
+      </div>
+
+    
+
+      <div id="participar" class="join-section">
+        <h2>✨ Inscrições para a Catequese 2026</h2>
+        <p>As matrículas e rematrículas estão abertas! Traga seu filho para caminhar conosco na fé.</p>
+        <a href="https://wa.me/5594984509985" target="_blank" class="join-btn">📝 Falar com a Secretaria</a>
+      </div>
+    </div>
+  </main>
+
+   <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>Paróquia Rainha da Paz</h4>
+          <p>Parauapebas — PA</p>
+          <p>“Servir com alegria, comunicar com amor.”</p>
+        </div>
+        <div class="footer-section">
+          <h4>PASCOM</h4>
+          <p>📞 (94) 98450-9985</p>
+          
+          <p>📍 Secretaria Paroquial</p>
+        </div>
+        <div class="footer-section">
+          
+          <p>Todos são bem-vindos!</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Paróquia Rainha da Paz — PASCOM</span>
+        <span style="display: block; margin-top: 8px;">Evangelizar através da comunicação é a nossa missão</span>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = message;
+      document.body.appendChild(toast);
+      setTimeout(() => { toast.remove(); }, 3000);
+    }
+
+    // Alerta de boas-vindas
+    window.onload = () => {
+      showToast("Seja bem-vindo à página da Catequese!");
+    };
+  </script>
+</body>
+</html>
