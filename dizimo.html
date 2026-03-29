@@ -1,429 +1,642 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dízimo — Paróquia Rainha da Paz</title>
-  <meta name="description" content="Página do Dízimo: cadastro, como contribuir e canais oficiais. Paróquia Rainha da Paz — Parauapebas/PA." />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes, viewport-fit=cover" />
+  <title>Doações e Dízimo - Paróquia Rainha da Paz</title>
+  <meta name="description" content="Contribua com a Paróquia Rainha da Paz em Parauapebas. Dízimo, doações via PIX, carnê, doação de materiais e muito mais." />
   <style>
-    :root{
-      --bg:#ffffff; --text:#1f2937; --muted:#6b7280; --line:#e5e7eb;
-      --brand-900:#0b2a57; --brand-800:#0f3a79; --brand-700:#1452a6;
-      --accent:#d11b2c; --card:#ffffff; --soft:#f7f8fb;
-      --shadow:0 10px 30px rgba(0,0,0,.08); --radius:18px; --max:1120px;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Arial;color:var(--text);background:var(--bg)}
-    a{color:inherit;text-decoration:none}
-    .container{width:min(var(--max),92vw);margin:0 auto}
-    .grid{display:grid;gap:16px}
-
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.25);
-      color:#fff;background:rgba(255,255,255,.12);transition:.2s;font-weight:800;cursor:pointer;
-    }
-    .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.18)}
-    .btn-solid{background:var(--accent);border-color:var(--accent)}
-    .btn-solid:hover{filter:brightness(.98)}
-    .btn-light{
-      background:#fff;border:1px solid var(--line);color:var(--text);
-    }
-    .btn-light:hover{background:var(--soft)}
-
-    .pill{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:6px 10px;border-radius:999px;border:1px solid var(--line);
-      color:var(--muted);font-weight:900;font-size:12px;background:#fff;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .topbar{background:var(--brand-900);color:#fff;font-size:13px}
-    .topbar .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 0;gap:14px;opacity:.98}
-    .topbar .right{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:flex-end}
-    .topbar a{opacity:.95}
-    .topbar a:hover{opacity:1;text-decoration:underline}
-
-    header{
-      background:linear-gradient(90deg,var(--brand-800),var(--brand-700));
-      color:#fff;position:sticky;top:0;z-index:50;box-shadow:0 6px 22px rgba(0,0,0,.12);
-    }
-    .header-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:18px}
-    .brand{display:flex;align-items:center;gap:14px;min-width:240px}
-    .logo{
-      width:54px;height:54px;border-radius:16px;background:rgba(255,255,255,.18);
-      display:grid;place-items:center;border:1px solid rgba(255,255,255,.25)
-    }
-    .brand h1{margin:0;font-size:18px;line-height:1.1;letter-spacing:.2px}
-    .brand p{margin:2px 0 0;font-size:12px;opacity:.9}
-
-    .search{flex:1;display:flex;justify-content:flex-end;gap:10px;align-items:center;min-width:240px}
-    .search form{
-      width:min(420px,100%);display:flex;gap:10px;align-items:center;
-      background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
-      padding:8px 10px;border-radius:999px;
-    }
-    .search input{width:100%;border:0;outline:0;background:transparent;color:#fff;font-weight:800}
-    .search input::placeholder{color:rgba(255,255,255,.8);font-weight:800}
-    .search button{border:0;background:transparent;color:#fff;font-weight:1000;cursor:pointer;opacity:.9}
-    .search button:hover{opacity:1}
-
-    nav{background:#fff;border-bottom:1px solid var(--line)}
-    .nav-inner{display:flex;gap:18px;align-items:center;padding:10px 0;overflow:auto}
-    .nav-inner a{
-      font-weight:1000;font-size:13px;color:#23324a;white-space:nowrap;
-      padding:10px 12px;border-radius:999px;transition:.18s
-    }
-    .nav-inner a:hover{background:var(--soft)}
-    .nav-inner a.active{
-      background:rgba(209,27,44,.08);color:var(--accent);border:1px solid rgba(209,27,44,.22)
+    :root {
+      --bg: #ffffff;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      --brand: #0f3a79;
+      --brand-dark: #0b2a57;
+      --accent: #d11b2c;
+      --accent-light: #fee2e2;
+      --soft: #f8fafc;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      --radius: 1rem;
     }
 
-    .hero{padding:26px 0 18px}
-    .hero-banner{
-      border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);
-      background:
-        radial-gradient(1200px 300px at 10% 20%, rgba(20,82,166,.22), transparent 60%),
-        radial-gradient(900px 260px at 90% 80%, rgba(209,27,44,.18), transparent 60%),
-        linear-gradient(90deg,#0f3a79,#1452a6);
-      color:#fff;
-    }
-    .hero-content{padding:22px;display:flex;gap:18px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}
-    .hero h2{margin:0;font-size:22px;letter-spacing:.2px}
-    .hero p{margin:8px 0 0;opacity:.95;max-width:820px}
-    .hero-actions{display:flex;gap:10px;flex-wrap:wrap}
-
-    main{padding:16px 0 40px}
-    .layout{display:grid;grid-template-columns:1.6fr .9fr;gap:24px;align-items:start}
-    .section-title{display:flex;align-items:center;gap:10px;margin:14px 0 14px;font-weight:1000;letter-spacing:.2px}
-    .section-title::before{content:"";width:4px;height:18px;background:var(--accent);border-radius:999px;display:inline-block}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 8px 22px rgba(0,0,0,.06);overflow:hidden}
-    .pad{padding:16px}
-    .muted{color:var(--muted)}
-    .mono{white-space:pre-wrap;line-height:1.75;margin:10px 0 0}
-
-    .widget-list{display:flex;flex-direction:column;gap:10px}
-    .widget-link{
-      display:flex;justify-content:space-between;align-items:center;
-      padding:12px 14px;border-radius:16px;border:1px solid var(--line);
-      background:#fff;font-weight:1000;
-    }
-    .widget-link span{color:var(--muted);font-weight:900;font-size:12px}
-    .widget-link:hover{background:var(--soft)}
-
-    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .input, .textarea, .select{
-      width:100%;padding:12px 14px;border-radius:14px;border:1px solid var(--line);
-      font-weight:800;outline:none;background:#fff;
-    }
-    .textarea{resize:vertical;min-height:120px}
-    .notice{
-      border:1px dashed rgba(209,27,44,.35);
-      background:rgba(209,27,44,.05);
-      border-radius:16px;
-      padding:12px;
-      color:#7a1320;
-      font-weight:800;
-      line-height:1.6;
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #eef2f6 100%);
+      color: var(--text);
+      line-height: 1.5;
     }
 
-    .copybox{
-      border:1px solid var(--line);
-      background:#fff;
-      border-radius:16px;
-      padding:12px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
-    .copybox code{font-weight:1000}
-    .copybox button{
-      border:1px solid var(--line);
-      background:var(--soft);
-      border-radius:12px;
-      padding:10px 12px;
-      font-weight:900;
-      cursor:pointer;
-    }
-    .copybox button:hover{filter:brightness(.98)}
-
-    footer{margin-top:34px;border-top:1px solid var(--line);background:#0b1f3f;color:#fff;padding:26px 0}
-    .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:18px;align-items:start}
-    footer h4{margin:0 0 10px}
-    footer p{margin:0;opacity:.9}
-    footer a{opacity:.92}
-    footer a:hover{opacity:1;text-decoration:underline}
-    .footnote{
-      margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.14);
-      display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;opacity:.9;font-size:13px
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
     }
 
-    @media (max-width:980px){
-      .layout{grid-template-columns:1fr}
-      .footer-grid{grid-template-columns:1fr}
-      .form-grid{grid-template-columns:1fr}
+    /* Header */
+    .topbar {
+      background: var(--brand-dark);
+      color: white;
+      font-size: 12px;
+      padding: 8px 0;
+      text-align: center;
+    }
+
+    .topbar .inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 50px;
+    }
+
+    .topbar a {
+      color: white;
+      text-decoration: none;
+      opacity: 0.9;
+      transition: opacity 0.2s;
+    }
+
+    .topbar a:hover {
+      opacity: 0;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 40px 0;
+      box-shadow: var(--shadow);
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      width: 108px;
+      height: 48px;
+     
+      border-radius: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .brand h1 {
+      font-size: 1.2rem;
+      line-height: 1.3;
+    }
+
+    .brand p {
+      font-size: 0.75rem;
+      opacity: 0.9;
+    }
+
+    .btn-voltar {
+      background: rgba(255,255,255,0.2);
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-voltar:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateX(-4px);
+    }
+
+    /* Hero da página */
+    .page-hero {
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      border-radius: 24px;
+      padding: 48px 32px;
+      margin: 32px 0;
+      text-align: center;
+      color: white;
+    }
+
+    .page-hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+
+    .page-hero p {
+      font-size: 1.1rem;
+      opacity: 0.95;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Cards principais */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid var(--border);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .card-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      color: var(--brand);
+    }
+
+    .card p {
+      color: var(--text-light);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    /* PIX Section */
+    .pix-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 48px;
+      color: white;
+    }
+
+    .pix-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .pix-info h2 {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .pix-key {
+      background: rgba(255,255,255,0.2);
+      padding: 16px;
+      border-radius: 16px;
+      margin: 20px 0;
+      font-family: monospace;
+      font-size: 1.1rem;
+      word-break: break-all;
+    }
+
+    .copy-btn {
+      background: white;
+      color: #667eea;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 12px;
+    }
+
+    .copy-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .qr-code {
+      text-align: center;
+      background: white;
+      padding: 24px;
+      border-radius: 20px;
+    }
+
+    .qr-code img {
+      width: 200px;
+      height: 200px;
+      margin-bottom: 12px;
+    }
+
+    .qr-code p {
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    /* Valores sugeridos */
+    .values-section {
+      background: var(--soft);
+      border-radius: 24px;
+      padding: 32px;
+      margin-bottom: 48px;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .value-card {
+      background: white;
+      text-align: center;
+      padding: 20px;
+      border-radius: 16px;
+      border: 2px solid var(--border);
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .value-card:hover {
+      border-color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    .value-amount {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--brand);
+    }
+
+    .value-label {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 8px;
+    }
+
+    /* Doação de materiais */
+    .materials-section {
+      background: white;
+      border-radius: 24px;
+      padding: 32px;
+      margin-bottom: 48px;
+      border: 1px solid var(--border);
+    }
+
+    .materials-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .material-item {
+      background: var(--soft);
+      padding: 16px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .material-icon {
+      font-size: 1.5rem;
+    }
+
+    .material-text {
+      font-weight: 600;
+    }
+
+    /* Carnê do dízimo */
+    .carne-section {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 48px;
+      color: white;
+    }
+
+    .carne-btn {
+      background: white;
+      color: #f5576c;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: all 0.2s;
+    }
+
+    .carne-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--brand-dark);
+      color: white;
+      margin-top: 60px;
+      padding: 48px 0 24px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+
+    .footer-section h4 {
+      margin-bottom: 16px;
+      font-size: 1.1rem;
+    }
+
+    .footer-section p, .footer-section a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .footer-section a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      font-size: 12px;
+    }
+
+    /* Botões */
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: #b01524;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      padding: 10px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: white;
+      color: var(--brand);
+    }
+
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #10b981;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      z-index: 1000;
+      animation: slideIn 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px;
+      }
+      
+      .page-hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .pix-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .topbar .inner {
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
 </head>
-
 <body>
-  <!-- TOPBAR -->
   <div class="topbar">
     <div class="container">
       <div class="inner">
-        <div id="todayText">Parauapebas, -- de -- de ----</div>
-        <div class="right">
-          <a href="index.html#contato">Secretaria</a>
-          <span style="opacity:.6">•</span>
-          <a href="dizimo.html">Dízimo</a>
-          <span style="opacity:.6">•</span>
-          <a href="index.html#avisos">Avisos</a>
+        <div>📅 Paróquia Rainha da Paz - Parauapebas/PA</div>
+        <div>
+          <a href="index.html">← Voltar ao site principal</a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- HEADER -->
   <header>
     <div class="container">
       <div class="header-inner">
         <div class="brand">
-          <div class="logo" aria-label="Logo"><span style="font-weight:1000;font-size:18px;">✝</span></div>
+          <div class="logo">
+            <img src="https://i.postimg.cc/XvbNcTWH/Design-sem-nome-1-removebg-preview.png" alt="Logo">
+          </div>
           <div>
             <h1>Paróquia Rainha da Paz</h1>
-            <p>Parauapebas — PA • Pastoral da Comunicação</p>
+            <p>Parauapebas — PA</p>
           </div>
         </div>
-
-        <div class="search">
-          <form onsubmit="return fakeSearch(event)">
-            <input type="search" placeholder="O que procura?" aria-label="Buscar no site" />
-            <button title="Buscar" aria-label="Buscar">🔎</button>
-          </form>
-          <a class="btn btn-solid" href="#contribuir">Contribuir</a>
-        </div>
+        <a href="index.html" class="btn-voltar">← Voltar ao início</a>
       </div>
     </div>
   </header>
 
-  <!-- NAV -->
-  <nav>
-    <div class="container">
-      <div class="nav-inner">
-        <a href="index.html#inicio">INÍCIO</a>
-        <a href="index.html#paroquo">NOSSO PÁROCO</a>
-        <a href="index.html#pastorais">PASTORAIS</a>
-        <a href="index.html#comunidades">COMUNIDADES</a>
-        <a href="index.html#avisos">AVISOS</a>
-        <a href="index.html#galerias">GALERIAS</a>
-        <a href="liturgiadiaria.html">LITURGIA</a>
-        <a href="santo-do-dia.html">SANTO DO DIA</a>
-        <a class="active" href="dizimo.html">DÍZIMO</a>
-        <a href="index.html#contato">CONTATO</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero" id="inicio">
-    <div class="container">
-      <div class="hero-banner">
-        <div class="hero-content">
-          <div>
-            <div class="pill">❤️ Dízimo</div>
-            <h2>Seja dizimista: um gesto de fé e compromisso</h2>
-            <p>
-              O dízimo é partilha, gratidão e participação na missão da Igreja.
-              Aqui você encontra como contribuir e como se cadastrar como dizimista.
-            </p>
-          </div>
-          <div class="hero-actions">
-            <a class="btn" href="#sobre">O que é?</a>
-            <a class="btn" href="#contribuir">Como contribuir</a>
-            
-<section class="card" id="cadastro" style="margin-top:14px;">
-  <div class="pad">
-    <div class="section-title" style="margin-top:0;">Seja dizimista</div>
-
-    <div class="muted" style="font-weight:800; line-height:1.7;">
-      Para se cadastrar como dizimista ou tirar dúvidas sobre o dízimo,
-      entre em contato diretamente com a secretaria paroquial.
-    </div>
-
-    <div style="margin-top:16px; display:flex; flex-direction:column; gap:12px;">
-
-      <a class="btn btn-solid"
-         style="border-radius:14px; padding:14px; font-size:15px;"
-         href="https://wa.me/5594000000000"
-         target="_blank"
-         rel="noopener">
-        📱 Falar com a Secretaria pelo WhatsApp
-      </a>
-
-      <div class="muted" style="font-weight:800; font-size:12px;">
-        * Substitua o número acima pelo WhatsApp oficial da secretaria (com DDI + DDD).
-      </div>
-
-    </div>
-  </div>
-</section>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <main>
     <div class="container">
-      <div class="layout">
+      <!-- Hero da página -->
+      <div class="page-hero">
+        <h1>🙏 Dízimo e Doações</h1>
+        <p>Sua contribuição sustenta a missão da Igreja, as obras sociais e a evangelização. Seja um colaborador da nossa comunidade!</p>
+        <div style="margin-top: 24px;">
+          <a href="#pix" class="btn-outline" style="margin-right: 12px;">Doar via PIX</a>
+          <a href="#carne" class="btn-primary">Solicitar Carnê</a>
+        </div>
+      </div>
 
-        <!-- COLUNA PRINCIPAL -->
-        <div>
-
-          <section class="card" id="sobre">
-            <div class="pad">
-              <div class="section-title" style="margin-top:0;">O que é o dízimo?</div>
-              <div class="muted" style="font-weight:800; line-height:1.7;">
-                O dízimo é uma contribuição regular e consciente para sustentar a vida e a missão da paróquia:
-                <b>evangelização</b>, <b>ações sociais</b>, <b>manutenção</b> e <b>formação</b>.
-                Mais que um valor, é um compromisso de fé e pertença.
-              </div>
-
-              <div class="grid" style="grid-template-columns:1fr; gap:12px; margin-top:14px;">
-                <div class="notice">
-                  ✅ Transparência: se quiser, você pode colocar aqui um link para prestação de contas,
-                  ou um resumo mensal das ações da paróquia.
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section class="card" id="contribuir" style="margin-top:14px;">
-            <div class="pad">
-              <div class="section-title" style="margin-top:0;">Como contribuir</div>
-              <div class="muted" style="font-weight:800; line-height:1.7;">
-                Você pode contribuir presencialmente na secretaria/celebrações ou via transferência/Pix.
-                Substitua os dados abaixo pelos dados oficiais da paróquia.
-              </div>
-
-              <div class="grid" style="grid-template-columns:1fr; gap:12px; margin-top:12px;">
-                <div class="card" style="box-shadow:none;">
-                  <div class="pad">
-                    <div class="pill">💠 Pix (Chave)</div>
-                    <div class="copybox" style="margin-top:10px;">
-                      <code id="pixKey">SUA-CHAVE-PIX-AQUI</code>
-                      <button type="button" onclick="copyText('pixKey')">Copiar</button>
-                    </div>
-                    <div class="muted" style="margin-top:8px;font-weight:800;font-size:12px;">
-                      Dica: se a chave for e-mail/celular/CNPJ, fica mais fácil para o fiel.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card" style="box-shadow:none;">
-                  <div class="pad">
-                    <div class="pill">🏦 Dados bancários (opcional)</div>
-                    <div class="mono" id="bankData">Banco: —
-Agência: —
-Conta: —
-Titular: —
-CNPJ/CPF: —</div>
-                    <div class="muted" style="margin-top:8px;font-weight:800;font-size:12px;">
-                      Se vocês só usam Pix, pode remover esta caixa.
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
-                <a class="btn btn-solid" style="border-radius:14px;" href="#cadastro">Quero ser dizimista</a>
-                <a class="btn btn-light" style="border-radius:14px;" href="index.html#contato">Falar com a secretaria</a>
-              </div>
-            </div>
-          </section>
-
-  
-
-          <section class="card" id="duvidas" style="margin-top:14px;">
-            <div class="pad">
-              <div class="section-title" style="margin-top:0;">Dúvidas frequentes</div>
-
-              <div class="grid" style="grid-template-columns:1fr; gap:12px;">
-                <div class="card" style="box-shadow:none;">
-                  <div class="pad">
-                    <div style="font-weight:1000;">Precisa ser 10%?</div>
-                    <div class="muted" style="font-weight:800; line-height:1.7; margin-top:8px;">
-                      Não. O mais importante é a <b>consciência</b> e a <b>regularidade</b>.
-                      Cada fiel contribui conforme sua possibilidade.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card" style="box-shadow:none;">
-                  <div class="pad">
-                    <div style="font-weight:1000;">Como a paróquia usa o dízimo?</div>
-                    <div class="muted" style="font-weight:800; line-height:1.7; margin-top:8px;">
-                      Manutenção, contas, formação, celebrações, obras e ações sociais.
-                      (Aqui vocês podem colocar um resumo e link de transparência.)
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card" style="box-shadow:none;">
-                  <div class="pad">
-                    <div style="font-weight:1000;">Posso contribuir online sem ser cadastrado?</div>
-                    <div class="muted" style="font-weight:800; line-height:1.7; margin-top:8px;">
-                      Sim. O cadastro ajuda a paróquia a manter contato, agradecer e organizar a pastoral do dízimo.
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </section>
-
+      <!-- Cards de informações -->
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">💝</div>
+          <h2>O que é o Dízimo?</h2>
+          <p>O dízimo é uma contribuição voluntária e consciente, um gesto de gratidão a Deus pelos bens recebidos. Com ele, sustentamos as atividades paroquiais, obras sociais, manutenção das comunidades e a evangelização.</p>
+          <p style="font-style: italic; color: var(--accent); margin-top: 12px;">"Cada um dê conforme determinou em seu coração, não com tristeza ou por necessidade, porque Deus ama quem dá com alegria." (2Coríntios 9,7)</p>
         </div>
 
-        <!-- SIDEBAR -->
-        <aside>
-          <div class="card">
-            <div class="pad">
-              <div class="section-title" style="margin-top:0;">Atalhos</div>
-              <div class="widget-list">
-                <a class="widget-link" href="#contribuir">Como contribuir <span>→</span></a>
-                <a class="widget-link" href="#cadastro">Cadastro de dizimista <span>→</span></a>
-                <a class="widget-link" href="#duvidas">Dúvidas frequentes <span>→</span></a>
-                <a class="widget-link" href="index.html#contato">Contato/Secretaria <span>→</span></a>
-              </div>
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <h2>Onde são aplicados?</h2>
+          <p>✅ Manutenção das igrejas e capelas<br>
+          ✅ Sustento do Clero<br>
+          ✅ Catequese e formação cristã<br>
+          ✅ Obras sociais e caridade<br>
+          ✅ Liturgia e celebrações<br>
+          ✅ Projetos de evangelização</p>
+        </div>
 
-              <hr style="border:0;border-top:1px solid var(--line); margin:16px 0;">
+        <div class="card">
+          <div class="card-icon">🤝</div>
+          <h2>Como contribuir?</h2>
+          <p>📱 PIX - Instantâneo e seguro<br>
+          
+          📝 Carnê mensal ou trimestral<br>
+          🏦 Depósito bancário<br>
+          📦 Doação de materiais e alimentos</p>
+        </div>
+      </div>
 
-              <div class="section-title" style="margin-top:0;">Edite aqui</div>
-              <div class="muted" style="font-weight:800; line-height:1.7;">
-                • Chave Pix<br>
-                • Titular / CNPJ<br>
-                • WhatsApp da secretaria
-              </div>
+      <!-- Seção PIX principal -->
+      <div id="pix" class="pix-section">
+        <div class="pix-grid">
+          <div class="pix-info">
+            <h2>⚡ Doação via PIX</h2>
+            <p>Rápido, prático e seguro. Use nossa chave PIX para contribuir de qualquer lugar.</p>
+            <div class="pix-key">
+              <strong>Chave PIX (CNPJ):</strong><br>
+              04.882.130/0034-14
             </div>
+            <button class="copy-btn" onclick="copyPixKey()">📋 Copiar chave PIX</button>
+            <p style="margin-top: 16px; font-size: 12px;">*Qualquer valor é bem-vindo. Deus abençoa sua generosidade!</p>
           </div>
-
-          <div style="height:14px;"></div>
-
-          <div class="card">
-            <div class="pad">
-              <div class="section-title" style="margin-top:0;">Versículo</div>
-              <div class="muted" style="font-weight:800; line-height:1.7;">
-                “Cada um contribua segundo tiver decidido no seu coração,
-                sem tristeza nem constrangimento; Deus ama a quem dá com alegria.”
-              </div>
-              <div class="muted" style="margin-top:10px; font-weight:1000;">
-                (2 Cor 9,7)
-              </div>
-            </div>
+          <div class="qr-code">
+            <img src="https://i.postimg.cc/pTY5Y6FC/image.png" alt="QR Code PIX">
+            <p>📱 Leia o QR Code com seu app bancário</p>
+            <button class="copy-btn" onclick="alert('QR Code PIX: 04.882.130/0034-14\nEscaneie com o app do seu banco.')">📸 Ver QR Code ampliado</button>
           </div>
-        </aside>
+        </div>
+      </div>
 
+      <!-- Valores sugeridos -->
+     
+
+      <!-- Carnê do dízimo -->
+      <div id="carne" class="carne-section">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;">
+          <div>
+            <h2 style="font-size: 1.8rem; margin-bottom: 12px;">📒 Carnê do Dízimo</h2>
+            <p style="font-size: 1rem; opacity: 0.95;">Receba um carnê em casa e programe suas contribuições mensais ou trimestrais. Simples, organizado e sem burocracia.</p>
+            <button class="carne-btn" onclick="requestCarne()">📝 Solicitar Carnê agora</button>
+          </div>
+          <div style="font-size: 4rem;">📆</div>
+        </div>
+      </div>
+
+      <!-- Doação de materiais e alimentos -->
+      <div class="materials-section">
+        <h2 style="margin-bottom: 16px;">🎁 Doação de Materiais e Alimentos</h2>
+        <p>Além do dízimo financeiro, você pode contribuir com itens essenciais para nossas obras sociais e para a comunidade. Doe com amor!</p>
+        <div class="materials-list">
+          <div class="material-item">
+            <div class="material-icon">🥫</div>
+            <div class="material-text">Alimentos não perecíveis</div>
+          </div>
+          <div class="material-item">
+            <div class="material-icon">👕</div>
+            <div class="material-text">Roupas e calçados</div>
+          </div>
+          <div class="material-item">
+            <div class="material-icon">📚</div>
+            <div class="material-text">Livros e materiais de catequese</div>
+          </div>
+          <div class="material-item">
+            <div class="material-icon">⛪</div>
+            <div class="material-text">Materiais de limpeza</div>
+          </div>
+          <div class="material-item">
+            <div class="material-icon">🕯️</div>
+            <div class="material-text">Velas e artigos litúrgicos</div>
+          </div>
+          <div class="material-item">
+            <div class="material-icon">💊</div>
+            <div class="material-text">Medicamentos (uso contínuo)</div>
+          </div>
+        </div>
+        <div style="margin-top: 24px; background: var(--soft); padding: 16px; border-radius: 12px;">
+          <p><strong>📍 Entrega:</strong> Secretaria Paroquial - Rua 77, Qd. 520, Lote B, Nova Carajás<br>
+          <strong>⏰ Horário:</strong> Segunda a Sexta, 14h às 18h | Sábado, 8h às 12h</p>
+        </div>
+      </div>
+
+ 
+
+      <!-- Mensagem de agradecimento -->
+      <div style="text-align: center; padding: 32px; background: linear-gradient(135deg, var(--accent-light), white); border-radius: 24px; margin-bottom: 32px;">
+        <p style="font-size: 1.2rem; font-weight: 600;">🙏 "Cada contribuição é um ato de amor que fortalece a nossa missão evangelizadora."</p>
+        <p style="margin-top: 12px;">Deus abençoe sua generosidade! Que Nossa Senhora Rainha da Paz interceda por você e sua família.</p>
       </div>
     </div>
   </main>
@@ -431,68 +644,84 @@ CNPJ/CPF: —</div>
   <footer>
     <div class="container">
       <div class="footer-grid">
-        <div>
+        <div class="footer-section">
           <h4>Paróquia Rainha da Paz</h4>
           <p>Parauapebas — PA</p>
-          <p style="margin-top:8px; opacity:.9;">“Servir com alegria, comunicar com amor.”</p>
+          <p>“Servir com alegria, comunicar com amor.”</p>
         </div>
-        <div>
-          <h4>Menu</h4>
-          <div class="grid" style="gap:8px;">
-            <a href="index.html#avisos">Avisos</a>
-            <a href="index.html#agenda">Agenda</a>
-            <a href="index.html#pastorais">Pastorais</a>
-            <a href="index.html#comunidades">Comunidades</a>
-            <a href="index.html#galerias">Galerias</a>
-          </div>
-        </div>
-        <div>
+        <div class="footer-section">
           <h4>Contato</h4>
-          <div class="grid" style="gap:8px;">
-            <a href="index.html#contato">Secretaria</a>
-            <a href="index.html#doacoes">Doações</a>
-            <a href="#">Instagram</a>
-            <a href="#">YouTube</a>
-          </div>
+          <p>📞 (94) 98450-9985</p>
+          <p>✉️ dizimo@rainhadapaz.org.br</p>
+          <p>📍 Rua 77, Qd. 520, Nova Carajás</p>
+        </div>
+        <div class="footer-section">
+          <h4>Horário Secretaria</h4>
+          <p>Seg–Sex: 14h às 18h</p>
+          <p>Sábado: 8h às 12h</p>
+          <p>Domingo: após as missas</p>
         </div>
       </div>
-
-      <div class="footnote">
-        <div>© <span id="yearNow"></span> Paróquia Rainha da Paz — PASCOM</div>
-        <div>Feito com ♥ para a evangelização</div>
+      <div class="footer-bottom">
+        <span>© 2026 Paróquia Rainha da Paz — PASCOM</span>
+        <span style="display: block; margin-top: 8px;">Contribuir é um ato de fé e amor ao próximo</span>
       </div>
     </div>
   </footer>
 
   <script>
-    function fakeSearch(e){ e.preventDefault(); alert("Busca ainda não configurada."); return false; }
+    // Função para copiar a chave PIX
+    function copyPixKey() {
+      const pixKey = "04.882.130/0034-14";
+      navigator.clipboard.writeText(pixKey).then(() => {
+        showToast("✅ Chave PIX copiada: " + pixKey);
+      }).catch(() => {
+        alert("Chave PIX: " + pixKey);
+      });
+    }
 
-    (function(){
-      const now = new Date();
-      const months = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
-      document.getElementById("todayText").textContent =
-        `Parauapebas, ${String(now.getDate()).padStart(2,'0')} de ${months[now.getMonth()]} de ${now.getFullYear()}`;
-      document.getElementById("yearNow").textContent = now.getFullYear();
-    })();
-
-    async function copyText(id){
-      const text = document.getElementById(id).textContent.trim();
-      try{
-        await navigator.clipboard.writeText(text);
-        alert("Copiado: " + text);
-      }catch{
-        alert("Não deu pra copiar automaticamente. Copie manualmente: " + text);
+    // Sugerir valor de doação
+    function suggestDonation(value) {
+      if (value === 'outro') {
+        const customValue = prompt("Digite o valor que deseja contribuir:", "R$ ");
+        if (customValue && !isNaN(parseFloat(customValue))) {
+          alert(`🙏 Obrigado! Valor sugerido: R$ ${customValue}\n\nUse nossa chave PIX: 04.882.130/0034-14\nou compareça à secretaria para outras formas de doação.`);
+        }
+      } else {
+        alert(`💝 Obrigado pela sua generosidade!\n\nValor sugerido: R$ ${value}\n\nUse nossa chave PIX: 04.882.130/0034-14\nou deposite na conta bancária informada.`);
       }
     }
 
-    function submitDizimo(e){
-      e.preventDefault();
-      const fd = new FormData(e.target);
-      const nome = fd.get("nome");
-      alert("Cadastro enviado (modo demonstração). Obrigado, " + nome + "!");
-      e.target.reset();
-      return false;
+    // Solicitar carnê
+    function requestCarne() {
+      const nome = prompt("Informe seu nome completo para receber o carnê:");
+      if (nome && nome.trim()) {
+        alert(`📒 Olá ${nome}, seu carnê será preparado!\n\nEntre em contato com a secretaria para retirada:\n(94) 98450-9985\nou passe na secretaria em horário comercial.\n\nDeus abençoe sua contribuição!`);
+      } else if (nome !== null) {
+        alert("Por favor, informe um nome para solicitar o carnê.");
+      }
     }
+
+    // Toast notification
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = message;
+      document.body.appendChild(toast);
+      setTimeout(() => {
+        toast.remove();
+      }, 3000);
+    }
+
+    // Animar cards ao clicar
+    document.querySelectorAll('.value-card').forEach(card => {
+      card.addEventListener('click', function() {
+        this.style.transform = 'scale(0.98)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 150);
+      });
+    });
   </script>
 </body>
 </html>
