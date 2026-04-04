@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes, viewport-fit=cover" />
-  <title>Catequese | Paróquia Rainha da Paz</title>
-  <meta name="description" content="Pastoral da Catequese da Paróquia Rainha da Paz em Parauapebas. Formação cristã e iniciação à vida cristã para crianças, jovens e adultos." />
+  <title>Orações - Paróquia Rainha da Paz</title>
+  <meta name="description" content="Orações católicas: Pai Nosso, Ave Maria, Creio, Terço, Salve Rainha e muito mais. Paróquia Rainha da Paz - Parauapebas/PA." />
   <style>
     * {
       margin: 0;
@@ -22,13 +23,13 @@
       --accent: #d11b2c;
       --accent-light: #fee2e2;
       --soft: #f8fafc;
-      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
       --radius: 1rem;
     }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background: linear-gradient(135deg, #f5f7fa 0%, #eef2f6 100%);
+      background: var(--bg);
       color: var(--text);
       line-height: 1.5;
     }
@@ -39,13 +40,12 @@
       padding: 0 24px;
     }
 
-    /* Header */
+    /* Topbar */
     .topbar {
       background: var(--brand-dark);
       color: white;
       font-size: 12px;
       padding: 8px 0;
-      text-align: center;
     }
 
     .topbar .inner {
@@ -53,21 +53,22 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 50px;
+      gap: 12px;
     }
 
     .topbar a {
       color: white;
       text-decoration: none;
       opacity: 0.9;
-      transition: opacity 0.2s;
     }
 
     .topbar a:hover {
       opacity: 1;
+      text-decoration: underline;
     }
 
-    header {
+    /* Header */
+     header {
       background: linear-gradient(135deg, var(--brand), var(--brand-dark));
       color: white;
       position: sticky;
@@ -94,6 +95,7 @@
     .logo {
       width: 108px;
       height: 48px;
+     
       border-radius: 200px;
       display: flex;
       align-items: center;
@@ -132,104 +134,228 @@
       transform: translateX(-4px);
     }
 
-    /* Hero da página */
-    .page-hero {
-      background: linear-gradient(135deg, #22c55e, #15803d); /* Verde para representar esperança/catequese */
-      border-radius: 24px;
-      padding: 48px 32px;
-      margin: 32px 0;
-      text-align: center;
-      color: white;
+    /* Navegação */
+    nav {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 80px;
+      z-index: 99;
+      overflow-x: auto;
     }
 
-    .page-hero h1 {
-      font-size: 2.5rem;
+    .nav-inner {
+      display: flex;
+      gap: 8px;
+      padding: 12px 0;
+      min-width: min-content;
+    }
+
+    .nav-inner a {
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      border-radius: 30px;
+      color: var(--text);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .nav-inner a:hover {
+      background: var(--soft);
+    }
+
+    .nav-inner a.active {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 32px 0 24px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      border-radius: 24px;
+      padding: 32px;
+      color: white;
+      text-align: center;
+    }
+
+    .hero-card h1 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .hero-card p {
+      opacity: 0.95;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-size: 12px;
       margin-bottom: 16px;
     }
 
-    /* Cards principais */
-    .cards-grid {
+    /* Layout */
+    .layout {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       gap: 24px;
       margin-bottom: 48px;
     }
 
-    .card {
+    /* Cards de orações */
+    .prayer-card {
       background: white;
-      border-radius: 24px;
-      padding: 28px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-      transition: transform 0.2s, box-shadow 0.2s;
       border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.2s;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
-    .card h2 {
-      font-size: 1.5rem;
+    .prayer-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .prayer-header {
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      padding: 20px;
+      color: white;
+    }
+
+    .prayer-header h2 {
+      font-size: 1.3rem;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .prayer-icon {
+      font-size: 1.8rem;
+    }
+
+    .prayer-body {
+      padding: 24px;
+      flex: 1;
+    }
+
+    .prayer-text {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .prayer-text p {
+      margin-bottom: 12px;
+    }
+
+    .prayer-text em {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .btn-rezar {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--brand);
+      cursor: pointer;
+      transition: all 0.2s;
+      width: 100%;
+      text-align: center;
+    }
+
+    .btn-rezar:hover {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Terço especial */
+    .rosary-card {
+      grid-column: span 2;
+    }
+
+    .misterios {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .misterio-item {
+      background: var(--soft);
+      padding: 12px;
+      border-radius: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .misterio-item:hover {
+      background: var(--accent-light);
+      transform: scale(1.02);
+    }
+
+    .misterio-dia {
+      font-size: 11px;
+      color: var(--text-light);
+      margin-bottom: 4px;
+    }
+
+    .misterio-nome {
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      margin-top: 24px;
+    }
+
+    .info-card {
+      background: var(--soft);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .info-card h3 {
       margin-bottom: 12px;
       color: var(--brand);
     }
 
-    /* Seção de missão */
-    .mission-section {
-      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-      border-radius: 24px;
-      padding: 48px;
-      margin-bottom: 48px;
-      color: white;
-      text-align: center;
+    .verse-day {
+      font-style: italic;
+      color: var(--accent);
+      font-weight: 500;
+      margin-top: 12px;
     }
 
-    /* Equipe */
-    .team-section {
-      background: white;
-      border-radius: 24px;
-      padding: 40px;
-      margin-bottom: 48px;
-      border: 1px solid var(--border);
-    }
-
-    .member-photo {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #22c55e, #15803d);
-      margin: 0 auto 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      color: white;
-    }
-
-    /* Participar */
-    .join-section {
-      background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
-      border-radius: 24px;
-      padding: 48px;
-      margin-bottom: 48px;
-      color: white;
-      text-align: center;
-    }
-
-    .join-btn {
-      background: white;
-      color: #2563eb;
-      border: none;
-      padding: 14px 40px;
-      border-radius: 40px;
-      font-weight: 700;
-      text-decoration: none;
-      display: inline-block;
-      transition: all 0.2s;
-    }
-
-        /* Footer */
+    /* Footer */
     footer {
       background: var(--brand-dark);
       color: white;
-      margin-top: 60px;
-      padding: 48px 0 24px;
+      margin-top: 48px;
+      padding: 40px 0 24px;
     }
 
     .footer-grid {
@@ -241,7 +367,7 @@
 
     .footer-section h4 {
       margin-bottom: 16px;
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
 
     .footer-section p, .footer-section a {
@@ -249,7 +375,7 @@
       text-decoration: none;
       display: block;
       margin-bottom: 8px;
-      font-size: 14px;
+      font-size: 13px;
     }
 
     .footer-section a:hover {
@@ -263,35 +389,60 @@
       font-size: 12px;
     }
 
+    /* Toast */
     .toast {
       position: fixed;
       bottom: 30px;
       right: 30px;
-      background: #2563eb;
+      background: #10b981;
       color: white;
       padding: 12px 24px;
       border-radius: 12px;
+      font-weight: 600;
       z-index: 1000;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
     }
 
     @media (max-width: 768px) {
-      .page-hero h1 { font-size: 1.8rem; }
+      .container {
+        padding: 0 16px;
+      }
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .rosary-card {
+        grid-column: span 1;
+      }
+      .misterios {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .hero-card h1 {
+        font-size: 1.5rem;
+      }
+      .topbar .inner {
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="container">
-      <div class="inner">
-        <div>
 
-        </div>
-        <div><a href="index.html">← Voltar ao site principal</a></div>
-      </div>
-    </div>
-  </div>
+  <!-- Topbar -->
+  
 
+  <!-- Header -->
   <header>
     <div class="container">
       <div class="header-inner">
@@ -304,100 +455,307 @@
             <p>Parauapebas — PA</p>
           </div>
         </div>
-        <a href="index.html" class="btn-voltar">← Início</a>
+        <a href="index.html" class="btn-voltar">← Voltar ao início</a>
       </div>
     </div>
   </header>
 
+  <!-- Navegação -->
+
+
   <main>
     <div class="container">
-      <div class="page-hero">
-        <h1>CATEQUESE</h1>
-        <p>Iniciação à Vida Cristã: Formando discípulos missionários de Jesus Cristo através da Palavra e da Eucaristia.</p>
-        <div style="margin-top: 24px;">
-          <a href="https://drive.google.com/file/d/1RRuyzNMhlz3XRCwWNubRZx_ZKsQllmfs/view?usp=drive_link" class="btn-outline" style="margin-right: 12px;">Calendário</a>
-          <a href="#participar" class="btn-primary" style="background-color: white; color: #15803d;">Inscrições 2026</a>
+      <!-- Hero -->
+      <div class="hero">
+        <div class="hero-card">
+          <div class="hero-badge">🙏 Oração</div>
+          <h1>Orações da Igreja</h1>
+          <p>Fortaleça sua fé com as orações tradicionais da Igreja Católica</p>
         </div>
       </div>
 
-      <div class="cards-grid">
-        <div class="card">
-          <div style="font-size: 3rem; margin-bottom: 20px;">🕊️</div>
-          <h2>O que é a Catequese?</h2>
-          <p>É o processo de educação da fé, que vai além do ensino intelectual. É um encontro pessoal com Jesus Cristo, vivenciado na comunidade, preparando para os sacramentos e para a vida cristã adulta.</p>
+      <!-- Grid de Orações -->
+      <div class="layout">
+        <!-- Pai Nosso -->
+        <div class="prayer-card">
+          <div class="prayer-header">
+            <h2><span class="prayer-icon">👑</span> Pai Nosso</h2>
+          </div>
+          <div class="prayer-body">
+            <div class="prayer-text">
+              <p>Pai Nosso, que estais nos céus,<br>
+              santificado seja o vosso nome;<br>
+              venha a nós o vosso Reino;<br>
+              seja feita a vossa vontade,<br>
+              assim na terra como no céu.<br>
+              O pão nosso de cada dia nos dai hoje;<br>
+              perdoai as nossas ofensas,<br>
+              assim como nós perdoamos<br>
+              a quem nos tem ofendido;<br>
+              e não nos deixeis cair em tentação,<br>
+              mas livrai-nos do mal. Amém.</p>
+            </div>
+            <button class="btn-rezar" onclick="rezar('Pai Nosso')">🙏 Rezar agora</button>
+          </div>
         </div>
 
-        <div id="etapas" class="card">
-          <div style="font-size: 3rem; margin-bottom: 20px;">📜</div>
-          <h2>Nossas Etapas</h2>
-          <p>🌱 <b>Pré-Catequese:</b> O despertar da fé.<br>
-             💧 <b>Eucaristia:</b> O encontro com o Pão da Vida.<br>
-             🔥 <b>Crisma:</b> A confirmação no Espírito Santo.<br>
-             📖 <b>Catequese de Adultos:</b> Iniciação tardia.</p>
+        <!-- Ave Maria -->
+        <div class="prayer-card">
+          <div class="prayer-header">
+            <h2><span class="prayer-icon">🌹</span> Ave Maria</h2>
+          </div>
+          <div class="prayer-body">
+            <div class="prayer-text">
+              <p>Ave Maria, cheia de graça,<br>
+              o Senhor é convosco;<br>
+              bendita sois vós entre as mulheres,<br>
+              e bendito é o fruto do vosso ventre, Jesus.<br>
+              Santa Maria, Mãe de Deus,<br>
+              rogai por nós pecadores,<br>
+              agora e na hora da nossa morte. Amém.</p>
+            </div>
+            <button class="btn-rezar" onclick="rezar('Ave Maria')">🙏 Rezar agora</button>
+          </div>
         </div>
 
-        <div class="card">
-          <div style="font-size: 3rem; margin-bottom: 20px;">🏠</div>
-          <h2>Família e Fé</h2>
-          <p>A família é a "Igreja Doméstica". Nossa catequese trabalha em conjunto com os pais, pois é no lar que o exemplo cristão cria raízes profundas para o resto da vida.</p>
+        <!-- Creio -->
+        <div class="prayer-card">
+          <div class="prayer-header">
+            <h2><span class="prayer-icon">✝️</span> Creio</h2>
+          </div>
+          <div class="prayer-body">
+            <div class="prayer-text">
+              <p>Creio em Deus Pai todo-poderoso,<br>
+              Criador do céu e da terra;<br>
+              e em Jesus Cristo, seu único Filho, nosso Senhor,<br>
+              que foi concebido pelo poder do Espírito Santo;<br>
+              nasceu da Virgem Maria,<br>
+              padeceu sob Pôncio Pilatos,<br>
+              foi crucificado, morto e sepultado;<br>
+              desceu à mansão dos mortos;<br>
+              ressurgiu dos mortos ao terceiro dia;<br>
+              subiu aos céus, está sentado à direita de Deus Pai todo-poderoso,<br>
+              donde há de vir a julgar os vivos e os mortos.<br>
+              Creio no Espírito Santo,<br>
+              na Santa Igreja Católica,<br>
+              na comunhão dos santos,<br>
+              na remissão dos pecados,<br>
+              na ressurreição da carne,<br>
+              na vida eterna. Amém.</p>
+            </div>
+            <button class="btn-rezar" onclick="rezar('Creio')">🙏 Rezar agora</button>
+          </div>
+        </div>
+
+        <!-- Glória ao Pai -->
+        <div class="prayer-card">
+          <div class="prayer-header">
+            <h2><span class="prayer-icon">✨</span> Glória ao Pai</h2>
+          </div>
+          <div class="prayer-body">
+            <div class="prayer-text">
+              <p>Glória ao Pai, e ao Filho, e ao Espírito Santo.<br>
+              Como era no princípio, agora e sempre. Amém.</p>
+            </div>
+            <button class="btn-rezar" onclick="rezar('Glória ao Pai')">🙏 Rezar agora</button>
+          </div>
+        </div>
+
+        <!-- Salve Rainha -->
+        <div class="prayer-card">
+          <div class="prayer-header">
+            <h2><span class="prayer-icon">👸</span> Salve Rainha</h2>
+          </div>
+          <div class="prayer-body">
+            <div class="prayer-text">
+              <p>Salve, Rainha, Mãe de misericórdia,<br>
+              vida, doçura, esperança nossa, salve!<br>
+              A vós bradamos, os degredados filhos de Eva;<br>
+              a vós suspiramos, gemendo e chorando neste vale de lágrimas.<br>
+              Eia, pois, advogada nossa,<br>
+              esses vossos olhos misericordiosos a nós volvei,<br>
+              e depois deste desterro, mostrai-nos Jesus,<br>
+              bendito fruto do vosso ventre.<br>
+              Ó clemente, ó piedosa, ó doce Virgem Maria!<br>
+              Rogai por nós, Santa Mãe de Deus,<br>
+              para que sejamos dignos das promessas de Cristo. Amém.</p>
+            </div>
+            <button class="btn-rezar" onclick="rezar('Salve Rainha')">🙏 Rezar agora</button>
+          </div>
+        </div>
+
+        <!-- Anjo da Guarda -->
+        <div class="prayer-card">
+          <div class="prayer-header">
+            <h2><span class="prayer-icon">👼</span> Anjo da Guarda</h2>
+          </div>
+          <div class="prayer-body">
+            <div class="prayer-text">
+              <p>Santo Anjo do Senhor, meu zeloso guardador,<br>
+              se a ti me confiou a piedade divina,<br>
+              sempre me rege, me guarde, me governe, me ilumine. Amém.</p>
+            </div>
+            <button class="btn-rezar" onclick="rezar('Anjo da Guarda')">🙏 Rezar agora</button>
+          </div>
+        </div>
+
+        <!-- Terço (card maior) -->
+        <div class="prayer-card rosary-card">
+          <div class="prayer-header">
+            <h2><span class="prayer-icon">📿</span> Santo Terço</h2>
+          </div>
+          <div class="prayer-body">
+            <div class="prayer-text">
+              <p><strong>Como rezar o Terço:</strong></p>
+              <p>1️⃣ Fazer o Sinal da Cruz e rezar o Credo<br>
+              2️⃣ Rezar um Pai Nosso, três Ave Marias e um Glória ao Pai<br>
+              3️⃣ Anunciar o mistério e rezar um Pai Nosso<br>
+              4️⃣ Rezar dez Ave Marias e um Glória ao Pai<br>
+              5️⃣ Repetir para cada mistério</p>
+            </div>
+            
+            <div class="misterios">
+              <div class="misterio-item" onclick="showMisterio('Gozosos')">
+                <div class="misterio-dia">Segundas e Sábados</div>
+                <div class="misterio-nome">📖 Mistérios Gozosos</div>
+              </div>
+              <div class="misterio-item" onclick="showMisterio('Dolorosos')">
+                <div class="misterio-dia">Terças e Sextas</div>
+                <div class="misterio-nome">💔 Mistérios Dolorosos</div>
+              </div>
+              <div class="misterio-item" onclick="showMisterio('Gloriosos')">
+                <div class="misterio-dia">Quartas e Domingos</div>
+                <div class="misterio-nome">✨ Mistérios Gloriosos</div>
+              </div>
+              <div class="misterio-item" onclick="showMisterio('Luminosos')">
+                <div class="misterio-dia">Quintas-feiras</div>
+                <div class="misterio-nome">💡 Mistérios Luminosos</div>
+              </div>
+            </div>
+            
+            <button class="btn-rezar" style="margin-top: 20px;" onclick="rezar('Santo Terço')">📿 Rezar o Terço</button>
+          </div>
+        </div>
+
+        <!-- Oração a Nossa Senhora -->
+        <div class="prayer-card">
+          <div class="prayer-header">
+            <h2><span class="prayer-icon">🌸</span> À Nossa Senhora</h2>
+          </div>
+          <div class="prayer-body">
+            <div class="prayer-text">
+              <p><em>Lembrai-vos, ó puríssima Virgem Maria,<br>
+              que nunca se ouviu dizer que algum daqueles que têm recorrido à vossa proteção,<br>
+              implorado a vossa assistência e reclamado o vosso socorro, fosse por vós desamparado.<br>
+              Animado eu com tal confiança, a vós recorro, ó Virgem das virgens, minha Mãe;<br>
+              a vós venho, e diante de vós me apresento, contrito e arrependido dos meus pecados.<br>
+              Ó Mãe do Verbo encarnado, não desprezeis as minhas súplicas,<br>
+              antes, ouvi-as propícia e dignai-vos atendê-las. Amém.</em></p>
+            </div>
+            <button class="btn-rezar" onclick="rezar('Lembrai-vos')">🙏 Rezar agora</button>
+          </div>
+        </div>
+
+        <!-- Oração pela Paz -->
+        <div class="prayer-card">
+          <div class="prayer-header">
+            <h2><span class="prayer-icon">🕊️</span> Oração de São Francisco</h2>
+          </div>
+          <div class="prayer-body">
+            <div class="prayer-text">
+              <p>Senhor, fazei de mim um instrumento da vossa paz.<br>
+              Onde houver ódio, que eu leve o amor.<br>
+              Onde houver ofensa, que eu leve o perdão.<br>
+              Onde houver discórdia, que eu leve a união.<br>
+              Onde houver dúvida, que eu leve a fé.<br>
+              Onde houver erro, que eu leve a verdade.<br>
+              Onde houver desespero, que eu leve a esperança.<br>
+              Onde houver tristeza, que eu leve a alegria.<br>
+              Onde houver trevas, que eu leve a luz.<br>
+              Ó Mestre, fazei que eu procure mais<br>
+              consolar, que ser consolado;<br>
+              compreender, que ser compreendido;<br>
+              amar, que ser amado.<br>
+              Pois é dando que se recebe,<br>
+              é perdoando que se é perdoado,<br>
+              é morrendo que se vive para a vida eterna.</p>
+            </div>
+            <button class="btn-rezar" onclick="rezar('Oração de São Francisco')">🙏 Rezar agora</button>
+          </div>
         </div>
       </div>
 
-      <div class="mission-section">
-        <h2>"Deixai vir a mim as criancinhas" (Mc 10,14)</h2>
-        <p>A Pastoral da Catequese tem como objetivo ecoar a Palavra de Deus. Mais do que preparar para um dia de festa (sacramento), preparamos cristãos conscientes para a missão de transformar o mundo.</p>
-      </div>
-
-    
-
-      <div id="participar" class="join-section">
-        <h2>✨ Inscrições para a Catequese 2026</h2>
-        <p>As matrículas e rematrículas estão abertas! Traga seu filho para caminhar conosco na fé.</p>
-        <a href="https://wa.me/5594984509985" target="_blank" class="join-btn">📝 Falar com a Secretaria</a>
+      <!-- Versículo do dia -->
+      <div class="info-card">
+        <h3>📖 Versículo do Dia</h3>
+        <p>"Orai sem cessar. Em tudo dai graças, porque esta é a vontade de Deus em Cristo Jesus para convosco."</p>
+        <div class="verse-day">1 Tessalonicenses 5,17-18</div>
       </div>
     </div>
   </main>
 
-   <footer>
+  <footer>
     <div class="container">
       <div class="footer-grid">
         <div class="footer-section">
           <h4>Paróquia Rainha da Paz</h4>
           <p>Parauapebas — PA</p>
-          <p>“Servir com alegria, comunicar com amor.”</p>
+          <p style="margin-top: 8px;">“Servir com alegria, comunicar com amor.”</p>
         </div>
         <div class="footer-section">
-          <h4>PASCOM</h4>
-          <p>📞 (94) 98450-9985</p>
-          
-          <p>📍 Secretaria Paroquial</p>
+          <h4>Menu</h4>
+          <a href="index.html#avisos">Avisos</a>
+          <a href="index.html#agenda">Agenda</a>
+          <a href="index.html#pastorais">Pastorais</a>
+          <a href="index.html#comunidades">Comunidades</a>
         </div>
         <div class="footer-section">
-          
-          <p>Todos são bem-vindos!</p>
+          <h4>Links Úteis</h4>
+          <a href="liturgia.html">Liturgia Diária</a>
+          <a href="oracoes.html">Orações</a>
+          <a href="doacoes.html">Dízimo</a>
+          <a href="pascom.html">PASCOM</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 Paróquia Rainha da Paz — PASCOM</span>
-        <span style="display: block; margin-top: 8px;">Evangelizar através da comunicação é a nossa missão</span>
+        <span>© <span id="yearNow"></span> Paróquia Rainha da Paz — PASCOM <br> Desenvolvido por Fábio Samuel (@fssamuelbs)</span>
+        <span style="display: block; margin-top: 8px;">A oração é o encontro da alma com Deus</span>
       </div>
     </div>
   </footer>
 
-
   <script>
+    // Data atual
+    (function() {
+      const now = new Date();
+      const meses = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+      const todaySpan = document.getElementById('todayText');
+      if(todaySpan) todaySpan.innerHTML = `Parauapebas, ${now.getDate()} de ${meses[now.getMonth()]} de ${now.getFullYear()}`;
+      const yearSpan = document.getElementById('yearNow');
+      if(yearSpan) yearSpan.innerHTML = now.getFullYear();
+    })();
+
     function showToast(message) {
       const toast = document.createElement('div');
       toast.className = 'toast';
       toast.textContent = message;
       document.body.appendChild(toast);
-      setTimeout(() => { toast.remove(); }, 3000);
+      setTimeout(() => toast.remove(), 3000);
     }
 
-    // Alerta de boas-vindas
-    window.onload = () => {
-      showToast("Seja bem-vindo à página da Catequese!");
-    };
+    function rezar(oracao) {
+      showToast(`🙏 Rezando ${oracao}... Que Deus te abençoe!`);
+    }
+
+    function showMisterio(misterio) {
+      const mistérios = {
+        'Gozosos': 'Anunciação, Visitação, Nascimento de Jesus, Apresentação, Encontro no Templo',
+        'Dolorosos': 'Agonia no Horto, Flagelação, Coroação de Espinhos, Caminho do Calvário, Crucificação',
+        'Gloriosos': 'Ressurreição, Ascensão, Descida do Espírito Santo, Assunção, Coroação de Maria',
+        'Luminosos': 'Batismo de Jesus, Bodas de Caná, Anúncio do Reino, Transfiguração, Instituição da Eucaristia'
+      };
+      showToast(`📿 Mistérios ${misterios}:\n${mistérios[misterio]}`);
+    }
   </script>
 </body>
 </html>
