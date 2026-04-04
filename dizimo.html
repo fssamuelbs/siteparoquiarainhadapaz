@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes, viewport-fit=cover" />
   <title>Doações e Dízimo - Paróquia Rainha da Paz</title>
-  <meta name="description" content="Contribua com a Paróquia Rainha da Paz em Parauapebas. Dízimo, doações via PIX, carnê, doação de materiais e muito mais." />
+  <meta name="description" content="Contribua com a Paróquia Rainha da Paz em Parauapebas. Dízimo, doações via PIX, doação de materiais e muito mais." />
   <style>
     * {
       margin: 0;
@@ -524,7 +524,7 @@
         <p>Sua contribuição sustenta a missão da Igreja, as obras sociais e a evangelização. Seja um colaborador da nossa comunidade!</p>
         <div style="margin-top: 24px;">
           <a href="#pix" class="btn-outline" style="margin-right: 12px;">Doar via PIX</a>
-          <a href="#carne" class="btn-primary">Solicitar Carnê</a>
+          <a href="#carne" class="btn-primary">Solicitar Envelope</a>
         </div>
       </div>
 
@@ -553,8 +553,8 @@
           <h2>Como contribuir?</h2>
           <p>📱 PIX - Instantâneo e seguro<br>
           
-          📝 Carnê mensal ou trimestral<br>
-          🏦 Depósito bancário<br>
+          
+          🏦 Dinheiro no Envelope<br>
           📦 Doação de materiais e alimentos</p>
         </div>
       </div>
@@ -587,9 +587,9 @@
       <div id="carne" class="carne-section">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;">
           <div>
-            <h2 style="font-size: 1.8rem; margin-bottom: 12px;">📒 Carnê do Dízimo</h2>
-            <p style="font-size: 1rem; opacity: 0.95;">Receba um carnê em casa e programe suas contribuições mensais ou trimestrais. Simples, organizado e sem burocracia.</p>
-            <button class="carne-btn" onclick="requestCarne()">📝 Solicitar Carnê agora</button>
+            <h2 style="font-size: 1.8rem; margin-bottom: 12px;">📒 Envelope do Dízimo</h2>
+            <p style="font-size: 1rem; opacity: 0.95;">Para construibições do dízimo, você pode enviar um Pix para a conta da Paróquia ou solicitar seu envelope com a Pastoral.</p>
+            <button class="carne-btn" onclick="requestCarne()">📝 Solicitar Envelope</button>
           </div>
           <div style="font-size: 4rem;">📆</div>
         </div>
@@ -652,19 +652,19 @@
         <div class="footer-section">
           <h4>Contato</h4>
           <p>📞 (94) 98450-9985</p>
-          <p>✉️ dizimo@rainhadapaz.org.br</p>
+        
           <p>📍 Rua 77, Qd. 520, Nova Carajás</p>
         </div>
         <div class="footer-section">
           <h4>Horário Secretaria</h4>
           <p>Seg–Sex: 14h às 18h</p>
           <p>Sábado: 8h às 12h</p>
-          <p>Domingo: após as missas</p>
+       
         </div>
       </div>
       <div class="footer-bottom">
         <span>© 2026 Paróquia Rainha da Paz — PASCOM</span>
-        <span style="display: block; margin-top: 8px;">Contribuir é um ato de fé e amor ao próximo</span>
+        <span style="display: block; margin-top: 8px;">Desenvolvido por Fábio Samuel (@fssamuelbs)</span>
       </div>
     </div>
   </footer>
@@ -694,9 +694,9 @@
 
     // Solicitar carnê
     function requestCarne() {
-      const nome = prompt("Informe seu nome completo para receber o carnê:");
+      const nome = prompt("Informe seu nome: ");
       if (nome && nome.trim()) {
-        alert(`📒 Olá ${nome}, seu carnê será preparado!\n\nEntre em contato com a secretaria para retirada:\n(94) 98450-9985\nou passe na secretaria em horário comercial.\n\nDeus abençoe sua contribuição!`);
+        alert(`📒 Olá ${nome}, Para solicitar seu envelope, você deve procurar a Pastoral do Dízimo ao fim de cada missa.`);
       } else if (nome !== null) {
         alert("Por favor, informe um nome para solicitar o carnê.");
       }
