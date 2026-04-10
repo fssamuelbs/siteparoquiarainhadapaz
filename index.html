@@ -1,7 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+
+   <meta name="google-site-verification" content="a6sNpgZ36ms0iymc4eUNPkYBif7bdUTcSpUJ7GTBds4">
+  <!-- Título que aparece nos resultados de busca -->
+<title>Paróquia Nossa Senhora Rainha da Paz - Horários de Missas e Comunidades</title>
+
+<!-- Descrição que aparece abaixo do título no Google -->
+<meta name="description" content="Confira os horários das missas, confissões e atividades das comunidades da Paróquia Rainha da Paz: São Miguel, Rosário, Sagrado Coração, Aparecida e mais.">
+
+<!-- Palavras-chave (opcional, pouco peso hoje em dia) -->
+<meta name="keywords" content="missa, horários, paróquia, rainha da paz, nova carajás, comunidades, confissão">
+
+<!-- Autor do site -->
+<meta name="author" content="Paróquia Rainha da Paz">
+
+<!-- Robots (diz pro Google o que fazer) -->
+<meta name="robots" content="index, follow">
   <meta charset="utf-8" />
+    <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/XvbNcTWH/Design-sem-nome-1-removebg-preview.png">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes, viewport-fit=cover" />
   <title>Paróquia Rainha da Paz — Parauapebas</title>
   <meta name="description" content="Site oficial da Paróquia Rainha da Paz em Parauapebas. Avisos, agenda, pastorais, comunidades, espiritualidade, doações e dízimo." />
@@ -687,8 +704,7 @@
             <input type="search" placeholder="Buscar..." aria-label="Buscar">
             <button type="submit">🔍</button>
           </form>
-          <a href="./dizimo.html" class="btn-dizimo">Dízimo</a>
-        </div>
+         
       </div>
     </div>
   </header>
@@ -821,21 +837,27 @@
             <div class="card clickable-card" onclick="showPastoralDetail('Pastoral da Juventude')"><div class="card-pad"><strong>Pastoral da Juventude</strong><div class="text-muted mt-2"></div></div></div>
           </div>
 
-          <div class="section-title" id="comunidades">Comunidades</div>
-          <div class="card">
-            <div class="card-pad">
-              <ul class="comunidades-list">
-                <li><strong>Matriz Rainha da Paz</strong> — Nova Carajás</li>
-                <li><strong>Sagrado Coração de Jesus</strong> — Res. Minha Casa Minha Vida</li>
-                <li><strong>São Miguel Arcanjo</strong> — Nova Carajás</li>
-                <li><strong>Nossa Senhora do Rosário</strong> — Bairro Amazônia</li>
-                <li><strong>Nossa Senhora de Fátima</strong> — Novo Brasil</li>
-                <li><strong>Santíssima Trindade</strong> — Nova Carajás</li>
-                <li><strong>São Francisco de Assis</strong> — Nova Carajás</li>
-                <li class="text-muted">+ Comunidades rurais: Cedere I, Vila Nova Esperança, São José, São Pedro</li>
-              </ul>
-            </div>
-          </div>
+<div class="section-title" id="comunidades">Comunidades</div>
+<div class="card">
+  <div class="card-pad">
+    <ul class="comunidades-list">
+      <li><strong>Matriz Nossa Senhora Rainha da Paz</strong> — Rua 77 - Qd. 520 - Lote B | Nova Carajás</li>
+      <li><strong>Sagrado Coração de Jesus (Urbano)</strong> — Residencial Minha Casa, Minha Vida - Setor C-20 | Nova Carajás</li>
+      <li><strong>São Miguel Arcanjo</strong> — R. Serra Sul - Qd. 616 - Lt. 05 | Nova Carajás</li>
+      <li><strong>Nossa Senhora do Rosário</strong> — Rua A09 - Qd. 17 - Lt. 04 | Bairro Amazônia</li>
+      <li><strong>Nossa Senhora de Fátima</strong> — Rua Central - nº 300 | Novo Brasil</li>
+      <li><strong>Santíssima Trindade</strong> — Av. Sossego - Qd. 415 - Lt.01 | Nova Carajás</li>
+      <li><strong>São Francisco de Assis</strong> — R. das Palmeiras - Qd. 04 - Próximo da Linha Férrea | Nova Carajás</li>
+      <li><strong>Nossa Senhora Aparecida</strong> — Bairro Cedere I | Zona Rural</li>
+      <li><strong>Santa Maria Mãe de Deus</strong> — Vila Nova Esperança (Atrás do Presídio) | Zona Rural</li>
+      <li><strong>Sagrado Coração de Jesus (Rural)</strong> — Qd. 01 - Lt. 04 | Vila Nova Esperança | Zona Rural</li>
+      <li><strong>Comunidade São José</strong> — Av. Principal | Vila Onalício Barros | Zona Rural</li>
+      <li><strong>Comunidade São Pedro</strong> — Estrada Vicinal 17 - Lt. 35 | Assentamento Santo Antônio | Zona Rural</li>
+      <li><strong>Comunidade Santa Luzia</strong> — Vs 2 | Vista Verde | Zona Rural</li>
+
+    </ul>
+  </div>
+</div>
 
           <div class="section-title" id="doacoes">Doações e Dízimo</div>
           <div class="card">
@@ -955,15 +977,74 @@
       alert(`🙏 ${pastoral}\n\nPara mais informações sobre horários, inscrições e reuniões, entre em contato com a secretaria paroquial ou procure um dos coordenadores após as missas.`);
     }
 
-    const agendaData = {
-      domingo: [{time:"07:00", title:"Santa Missa", place:"Matriz"},{time:"09:00", title:"Missa", place:"Comunidade Rosário"},{time:"18:00", title:"Santa Missa", place:"Matriz"}],
-      segunda: [{time:"19:00", title:"Grupo de Oração", place:"Salão Paroquial"}],
-      terca: [{time:"08:30", title:"Confissões", place:"Secretaria"},{time:"19:30", title:"Missa", place:"São Miguel Arcanjo"}],
-      quarta: [{time:"17:00", title:"Confissão", place:"Matriz"},{time:"19:30", title:"Santa Missa", place:"Matriz"}],
-      quinta: [{time:"08:30", title:"Confissões", place:"Secretaria"},{time:"19:30", title:"Missa", place:"N.Sra. Rosário"}],
-      sexta: [{time:"08:30", title:"Confissão", place:"Secretaria"}],
-      sabado: [{time:"10:30", title:"Confissão", place:"Matriz"},{time:"18:00", title:"Missa", place:"Santíssima Trindade"},{time:"19:30", title:"Missa", place:"N.Sra. Fátima"}]
-    };
+  const agendaData = {
+  domingo: [
+    { time: "07:00", title: "Santa Missa", place: "Matriz" },
+    { time: "08:00", title: "Celebração da Palavra", place: "São Francisco" },
+    { time: "09:00", title: "Missa", place: "Comunidade Rosário" },
+    { time: "17:00", title: "Catequese", place: "São José" },
+    { time: "18:00", title: "Santa Missa", place: "Matriz" },
+    { time: "18:00", title: "Catequese de Crisma", place: "São Miguel" },
+    { time: "19:00", title: "Celebração", place: "São José" }
+  ],
+  segunda: [
+    
+  ],
+  terca: [
+    { time: "08:30", title: "Confissões", place: "Secretaria" },
+    { time: "18:30", title: "Terço com as Crianças", place: "São Miguel" },
+    { time: "19:30", title: "Santa Missa", place: "São Miguel Arcanjo" },
+    { time: "19:30", title: "Terço Imaculado Coração de Maria", place: "Sagrado Coração" }
+  ],
+  quarta: [
+    { time: "17:00", title: "Confissão", place: "Matriz" },
+    { time: "19:30", title: "Santa Missa", place: "Matriz" },
+    { time: "19:30", title: "Oração pelas Famílias", place: "São Miguel" },
+    { time: "19:30", title: "Terço", place: "Aparecida" },
+    { time: "19:30", title: "Reunião do Apostalado da Oração (última quarta)", place: "Sagrado Coração" }
+  ],
+  quinta: [
+    { time: "08:30", title: "Confissões", place: "Secretaria" },
+    { time: "19:30", title: "Missa", place: "N.Sra. Rosário" },
+    { time: "19:30", title: "Adoração ao Santíssimo", place: "São Miguel" },
+    { time: "19:30", title: "Terço ou Adoração ao Santíssimo", place: "São José" },
+    { time: "19:30", title: "Adoração ao Santíssimo (primeira quinta)", place: "Aparecida" }
+  ],
+  sexta: [
+    { time: "08:30", title: "Confissão", place: "Secretaria" },
+    { time: "19:00", title: "Oração do Terço", place: "São Francisco" },
+    { time: "19:30", title: "Grupo de Oração", place: "Rosário" },
+    { time: "19:45", title: "Terço dos Homens", place: "São Miguel" },
+    { time: "19:30", title: "Santa Missa (segunda sexta)", place: "São Francisco" },
+    { time: "19:30", title: "Missa Votiva (1ª sexta)", place: "Sagrado Coração" }
+  ],
+  sabado: [
+    { time: "08:00", title: "Catequese com Crianças", place: "São Miguel" },
+    { time: "09:00", title: "Encontro dos Coroinhas", place: "Rosário" },
+    { time: "09:00", title: "Catequese", place: "Rosário" },
+    { time: "09:00", title: "Catequese", place: "Aparecida" },
+    { time: "09:25", title: "Preparação para Coroinhas", place: "São Miguel" },
+    { time: "10:30", title: "Confissão", place: "Matriz" },
+    { time: "13:00", title: "Catequese", place: "Rosário" },
+    { time: "14:00", title: "Catequese", place: "Aparecida" },
+    { time: "16:00", title: "Catequese", place: "Rosário" },
+    { time: "16:00", title: "Catequese", place: "Aparecida" },
+    { time: "16:00", title: "Catequese", place: "São Francisco" },
+    { time: "17:00", title: "Terço", place: "Santa Luzia" },
+    { time: "17:00", title: "Encontro de Catequese", place: "Sagrado Coração" },
+    { time: "17:30", title: "Missa ou Celebração (2º sábado)", place: "Santa Luzia" },
+    { time: "17:00", title: "Missa (3º sábado)", place: "São Pedro" },
+    { time: "18:00", title: "Encontro do JUCE", place: "São Miguel" },
+    { time: "18:00", title: "Missa", place: "Santíssima Trindade" },
+    { time: "18:00", title: "Encontro dos Coroinhas e Acólitos", place: "Sagrado Coração" },
+    { time: "19:00", title: "Missa (3º sábado)", place: "São José" },
+    { time: "19:30", title: "Missa", place: "N.Sra. Fátima" },
+    { time: "19:30", title: "Celebração", place: "Aparecida" },
+    { time: "19:30", title: "Missa (2º sábado)", place: "Aparecida" },
+    { time: "19:30", title: "Encontro da Pastoral da Juventude", place: "Sagrado Coração" },
+    { time: "19:30", title: "Reunião do Conselho Comunitário (1º sábado)", place: "Sagrado Coração" }
+  ]
+};
 
     function renderAgenda(day) {
       const items = agendaData[day] || [];
